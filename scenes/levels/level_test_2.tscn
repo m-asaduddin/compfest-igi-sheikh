@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://c25753h4cmm5c"]
+[gd_scene format=3 uid="uid://23xh2yff68y"]
 
-[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scenes/levels/level_test.gd" id="1_4ptlp"]
-[ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="2_yluh8"]
-[ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="3_4ptlp"]
-[ext_resource type="PackedScene" uid="uid://8j4lcpl5otix" path="res://scenes/characters/main_char.tscn" id="5_ycf23"]
-[ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="6_4lw2e"]
-[ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="6_uh3ll"]
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scenes/levels/level_test.gd" id="1_y4jno"]
+[ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="2_wc4wy"]
+[ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="3_xcqgx"]
+[ext_resource type="PackedScene" uid="uid://8j4lcpl5otix" path="res://scenes/characters/main_char.tscn" id="5_06vjo"]
+[ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="5_y4jno"]
+[ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="6_wc4wy"]
 
 [sub_resource type="Gradient" id="Gradient_ycf23"]
-colors = PackedColorArray(0.82, 0.62046665, 0.22139998, 1, 0.1375, 0.38499996, 0.55, 1)
+colors = PackedColorArray(0.84, 0.79239994, 0.69719994, 1, 0.5915, 0.62659997, 0.65, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ek5ad"]
 gradient = SubResource("Gradient_ycf23")
@@ -29,7 +29,7 @@ fill_to = Vector2(0.4280488, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
 
 [node name="LevelTest" type="Node2D" unique_id=1840508291]
-script = ExtResource("1_4ptlp")
+script = ExtResource("1_y4jno")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1338403156]
 position = Vector2(1388, 292)
@@ -68,24 +68,22 @@ scale = Vector2(4.4526787, 3.5051315)
 scale = Vector2(6.84, 1)
 shape = SubResource("RectangleShape2D_5811a")
 
-[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("2_yluh8")]
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("2_wc4wy")]
 position = Vector2(253, 548)
-spriteTexture = ExtResource("3_4ptlp")
+spriteTexture = ExtResource("3_xcqgx")
 
-[node name="MainChar" parent="." unique_id=661719872 instance=ExtResource("5_ycf23")]
-position = Vector2(2634, 559)
+[node name="MainChar" parent="." unique_id=661719872 instance=ExtResource("5_06vjo")]
+position = Vector2(1573, 563)
 
-[node name="Item" parent="." unique_id=934289669 instance=ExtResource("6_4lw2e")]
-position = Vector2(757, 560)
-item_name = "Tang"
-texture = ExtResource("3_4ptlp")
+[node name="Item" parent="." unique_id=372452859 instance=ExtResource("5_y4jno")]
+position = Vector2(641, 570)
+texture = ExtResource("3_xcqgx")
 
-[node name="Item2" parent="." unique_id=372452859 instance=ExtResource("6_4lw2e")]
-position = Vector2(1446, 560)
-item_name = "Tangga"
-texture = ExtResource("3_4ptlp")
+[node name="Item2" parent="." unique_id=1014721041 instance=ExtResource("5_y4jno")]
+position = Vector2(1035, 567)
+texture = ExtResource("3_xcqgx")
 
-[node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("6_uh3ll")]
-position = Vector2(2176, 560)
-target_scene_path = "uid://23xh2yff68y"
-target_scene_name = "Gang 2"
+[node name="Portal" parent="." unique_id=1007170774 instance=ExtResource("6_wc4wy")]
+position = Vector2(83, 573)
+target_scene_path = "uid://c25753h4cmm5c"
+target_scene_name = "Gang 1"
