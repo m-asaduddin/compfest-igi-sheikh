@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://c25753h4cmm5c"]
+
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scenes/levels/level_test.gd" id="1_4ptlp"]
+[ext_resource type="PackedScene" uid="uid://bcvhpivbgtqwa" path="res://scenes/objects/pickable_item.tscn" id="1_h0hot"]
+[ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="2_yluh8"]
+[ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="3_4ptlp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
+
+[sub_resource type="Gradient" id="Gradient_8tfhr"]
+colors = PackedColorArray(0.34, 0.22779998, 0.22779998, 1, 1, 0.5, 0.5, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5811a"]
+gradient = SubResource("Gradient_8tfhr")
+fill_from = Vector2(0.52560973, 1)
+fill_to = Vector2(0.4280488, 0)
+
+[node name="LevelTest" type="Node2D" unique_id=1840508291]
+script = ExtResource("1_4ptlp")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=131352529]
+position = Vector2(827.99994, 606)
+scale = Vector2(13.542821, 2.9685297)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=482591856]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=1759340349]
+scale = Vector2(2.1498334, 0.35475895)
+texture = SubResource("GradientTexture2D_5811a")
+
+[node name="BoundaryLeft" type="StaticBody2D" parent="." unique_id=835273372]
+position = Vector2(-60.999992, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryLeft" unique_id=385809054]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="BoundaryRight" type="StaticBody2D" parent="." unique_id=1065085944]
+position = Vector2(1719.9999, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryRight" unique_id=1894498584]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("2_yluh8")]
+position = Vector2(253, 548)
+spriteTexture = ExtResource("3_4ptlp")
+
+[node name="PickableItem" parent="." unique_id=1099221679 instance=ExtResource("1_h0hot")]
+position = Vector2(728, 587)
+item_name = "Item 1"
+
+[node name="PickableItem2" parent="." unique_id=16583871 instance=ExtResource("1_h0hot")]
+position = Vector2(1189, 587)
+item_name = "Item 2"

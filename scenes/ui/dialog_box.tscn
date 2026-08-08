@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bmc4ntfxup44q"]
+
+[sub_resource type="Gradient" id="Gradient_j5g3t"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5811a"]
+gradient = SubResource("Gradient_j5g3t")
+
+[node name="DialogBox" type="Control" unique_id=1770022621]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1153408638]
+position = Vector2(-0.5, 0)
+scale = Vector2(0.98815215, 0.5177531)
+texture = SubResource("GradientTexture2D_5811a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sprite2D" unique_id=762991989]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
