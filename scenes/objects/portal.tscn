@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bk20n67jylgdj"]
+
+[ext_resource type="PackedScene" uid="uid://b5auxkhg1d68e" path="res://scenes/objects/interactable.tscn" id="1_gd70c"]
+[ext_resource type="Script" uid="uid://q64hffx50o4c" path="res://scenes/objects/portal.gd" id="2_h5gno"]
+
+[node name="Portal" unique_id=372452859 instance=ExtResource("1_gd70c")]
+script = ExtResource("2_h5gno")

@@ -1,6 +1,8 @@
 extends Node
 
 @onready var inventories: Array[String]
+var selected_item : Dictionary = {}
+var player_spawn_location
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,3 +19,14 @@ func add_item(name: String) -> void:
 	
 func use_item(name: String) -> void:
 	inventories.erase(name)
+
+func select_item(index: int) -> void:
+	var item_name = inventories[index]
+	selected_item.assign({index: item_name})
+	print("selected item:\n index:", index, ", name:", item_name)
+
+func remove_selected() -> void:
+	selected_item.assign({})
+
+func game_over():
+	get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
