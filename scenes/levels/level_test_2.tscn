@@ -77,10 +77,12 @@ position = Vector2(1573, 563)
 
 [node name="Item" parent="." unique_id=372452859 instance=ExtResource("5_y4jno")]
 position = Vector2(641, 570)
+item_name = "Paket"
 texture = ExtResource("3_xcqgx")
 
 [node name="Item2" parent="." unique_id=1014721041 instance=ExtResource("5_y4jno")]
 position = Vector2(1035, 567)
+item_name = "Gunting"
 texture = ExtResource("3_xcqgx")
 
 [node name="Portal" parent="." unique_id=1007170774 instance=ExtResource("6_wc4wy")]
