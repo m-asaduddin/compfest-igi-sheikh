@@ -6,13 +6,19 @@ const JUMP_VELOCITY = -500.0
 @export var speed = 500
 @export_range(-1,1,2) var x_direction = 1
 @export var spriteTexture: Texture2D
+@export var camera_limit_left: int = -100
+@export var camera_limit_right: int = 100
 
 var is_in_knockback: bool = false
-@onready var sprite = $CollisionShape2D/Sprite2D
+@onready var sprite: Sprite2D = $CollisionShape2D/Sprite2D
+@onready var camera: Camera2D = $Camera2D
 
 func _ready() -> void:
 	#pass
+	camera.limit_left = camera_limit_left
+	camera.limit_right = camera_limit_right
 	sprite.texture = spriteTexture
+	
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "ui_up", "ui_down")

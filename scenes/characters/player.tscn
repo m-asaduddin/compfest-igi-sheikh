@@ -16,6 +16,7 @@ shape = SubResource("RectangleShape2D_5811a")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=759240869]
 offset = Vector2(0, -10)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2058851190]
-position = Vector2(101, -106)
-zoom = Vector2(1.2, 1.2)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1599820221]
+process_callback = 0
+limit_left = -24
+limit_right = 2810

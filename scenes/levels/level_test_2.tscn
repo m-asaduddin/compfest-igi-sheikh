@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://23xh2yff68y"]
 
-[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scenes/levels/level_test.gd" id="1_y4jno"]
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_y4jno"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="2_wc4wy"]
 [ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="3_xcqgx"]
 [ext_resource type="PackedScene" uid="uid://8j4lcpl5otix" path="res://scenes/characters/main_char.tscn" id="5_06vjo"]
@@ -87,5 +87,12 @@ texture = ExtResource("3_xcqgx")
 
 [node name="Portal" parent="." unique_id=1007170774 instance=ExtResource("6_wc4wy")]
 position = Vector2(83, 573)
-target_scene_path = "uid://c25753h4cmm5c"
+target_scene = "uid://c25753h4cmm5c"
 target_scene_name = "Gang 1"
+spawn_point_id = "SpawnRight"
+
+[node name="SpawnLeft" type="Marker2D" parent="." unique_id=1594575552]
+position = Vector2(254, 564)
+
+[node name="SpawnRight" type="Marker2D" parent="." unique_id=83102504]
+position = Vector2(2494, 552)
