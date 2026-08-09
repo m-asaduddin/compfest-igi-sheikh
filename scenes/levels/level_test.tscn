@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://c25753h4cmm5c"]
 
-[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scenes/levels/level_test.gd" id="1_4ptlp"]
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_4ptlp"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="2_yluh8"]
 [ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="3_4ptlp"]
-[ext_resource type="PackedScene" uid="uid://8j4lcpl5otix" path="res://scenes/characters/main_char.tscn" id="5_ycf23"]
 [ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="6_4lw2e"]
 [ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="6_uh3ll"]
 
@@ -68,12 +67,11 @@ scale = Vector2(4.4526787, 3.5051315)
 scale = Vector2(6.84, 1)
 shape = SubResource("RectangleShape2D_5811a")
 
-[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("2_yluh8")]
-position = Vector2(253, 548)
-spriteTexture = ExtResource("3_4ptlp")
+[node name="SpawnLeft" type="Marker2D" parent="." unique_id=1406269281]
+position = Vector2(84, 564)
 
-[node name="MainChar" parent="." unique_id=661719872 instance=ExtResource("5_ycf23")]
-position = Vector2(2634, 559)
+[node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
+position = Vector2(2324, 552)
 
 [node name="Item" parent="." unique_id=934289669 instance=ExtResource("6_4lw2e")]
 position = Vector2(757, 560)
@@ -87,5 +85,12 @@ texture = ExtResource("3_4ptlp")
 
 [node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("6_uh3ll")]
 position = Vector2(2176, 560)
-target_scene_path = "uid://23xh2yff68y"
+target_scene = "uid://23xh2yff68y"
 target_scene_name = "Gang 2"
+spawn_point_id = "SpawnLeft"
+
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("2_yluh8")]
+position = Vector2(253, 548)
+spriteTexture = ExtResource("3_4ptlp")
+camera_limit_left = -20
+camera_limit_right = 2810

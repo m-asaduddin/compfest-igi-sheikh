@@ -2,7 +2,7 @@ extends Node
 
 @onready var inventories: Array[String]
 var selected_item : Dictionary = {}
-var player_spawn_location
+var player_spawn_id: String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,12 +13,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func add_item(name: String) -> void:
-	inventories.append(name)
-	print("added to inventory:", name)
+func add_item(id: String) -> void:
+	inventories.append(id)
+	print("added to inventory:", id)
 	
-func use_item(name: String) -> void:
-	inventories.erase(name)
+func use_item(id: String) -> void:
+	inventories.erase(id)
 
 func select_item(index: int) -> void:
 	var item_name = inventories[index]

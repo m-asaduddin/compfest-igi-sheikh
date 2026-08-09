@@ -1,10 +1,18 @@
 extends Interactable
 
-@export_file("*.tscn") var target_scene_path: String
+@export_file("*.tscn") var target_scene: String
 @export var target_scene_name: String
 
+## Marker2D Node's name in target scene as a spawn pointT
+## 
+## To set the player spawn point in the target scene, 
+## make sure the target scene has `Marker2D` Node.
+## Then pass the Marker2D Node's name here
+@export var spawn_point_id: String
+
 func interact() -> void:
-	get_tree().change_scene_to_file(target_scene_path)
+	States.player_spawn_id = spawn_point_id
+	get_tree().change_scene_to_file(target_scene)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.:
 
