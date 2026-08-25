@@ -9,7 +9,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
@@ -30,3 +29,19 @@ func remove_selected() -> void:
 
 func game_over():
 	get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
+	
+func get_save_data() -> Dictionary:
+	return {
+		"inventories": inventories,
+		"selected_item": selected_item,
+		"player_spawn_id": player_spawn_id
+	}
+
+func load_save_data(data: Dictionary) -> void:
+	var raw_inventory = data.get("inventories", [])
+	inventories.clear()
+	for item in raw_inventory:
+		inventories.append(str(item))
+		
+	selected_item = data.get("selected_item", {})
+	player_spawn_id = data.get("player_spawn_id", "")

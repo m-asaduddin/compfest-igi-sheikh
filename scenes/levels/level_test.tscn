@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_4ptlp"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="2_yluh8"]
 [ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="3_4ptlp"]
+[ext_resource type="Script" uid="uid://dvshf0k8ascox" path="res://scripts/save-sys/saveable-item.gd" id="4_uh3ll"]
 [ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="6_4lw2e"]
 [ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="6_uh3ll"]
 
@@ -78,10 +79,18 @@ position = Vector2(757, 560)
 item_name = "Tang"
 texture = ExtResource("3_4ptlp")
 
+[node name="SaveableItem" type="Node" parent="Item" unique_id=1938214683]
+script = ExtResource("4_uh3ll")
+metadata/_custom_type_script = "uid://dvshf0k8ascox"
+
 [node name="Item2" parent="." unique_id=372452859 instance=ExtResource("6_4lw2e")]
 position = Vector2(1446, 560)
 item_name = "Tangga"
 texture = ExtResource("3_4ptlp")
+
+[node name="SaveableItem" type="Node" parent="Item2" unique_id=65997085]
+script = ExtResource("4_uh3ll")
+metadata/_custom_type_script = "uid://dvshf0k8ascox"
 
 [node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("6_uh3ll")]
 position = Vector2(2176, 560)

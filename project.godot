@@ -11,19 +11,22 @@ config_version=5
 [application]
 
 config/name="Compfest IGI"
-run/main_scene="uid://c25753h4cmm5c"
+run/main_scene="uid://x704i8xgfhbt"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 States="*uid://bdveuud2ssakk"
+SaveManager="*uid://bsqd3efi1ls8a"
+SceneManager="*uid://begm8ueq78woi"
 
 [display]
 
 window/size/viewport_width=800
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor]
 
