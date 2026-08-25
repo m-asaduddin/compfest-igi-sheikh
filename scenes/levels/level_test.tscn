@@ -105,3 +105,4 @@ position = Vector2(253, 548)
 spriteTexture = ExtResource("3_4ptlp")
 camera_limit_left = -20
 camera_limit_right = 2810
+camera_limit_top = -1000

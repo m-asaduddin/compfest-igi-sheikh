@@ -21,11 +21,12 @@ States="uid://bdveuud2ssakk"
 SaveManager="*uid://bsqd3efi1ls8a"
 SceneManager="*uid://begm8ueq78woi"
 GameState="*uid://x5gt35nw54xr"
+StoryOrchestrator="*uid://r2dbepbbq7ue"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

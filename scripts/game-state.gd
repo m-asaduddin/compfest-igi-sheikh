@@ -1,50 +1,4 @@
 extends Node
-var routes = {
-	"base":{
-		"paket_a":{
-			"jalan_x":"death_explosion",
-			"jalan_gng":{
-				"base": "enprisonment_2",
-				"dog": "success"
-			}
-		},
-		"paket_b":{
-			"jalan_x": "enprisonment_1",
-			"jalan_gng": "enprisonment_2"
-		}
-	}
-}
-var route_times = { 
-	"base": {
-		"mc_house": 20,
-		"mc_gudang": 20,
-		"base_proceed":20
-	},
-	"paket_a":{
-		"ambil_paket": 20,
-		"antar_paket_1": 20,
-		"paket_proceeding": 20
-	},
-	"jalan_x": {
-		"antar_paket_x":20
-	},
-	"jalan_gng": {
-		"antar_paket_start":10, #disini, cmn bisa diakses saat paket A tidak ditukar
-		"antar_paket_proceeding": 20
-	},
-	"paket_b":{
-		"ambil_paket":20,
-		"antar_paket_1":20,
-		"paket_proceeding":20,
-	},
-	
-	
-}
-var route_traversal = []
-var current_route : String = ""
-var current_npc_action : String = ""
-var next_choice = []
-
 
 var inventories: Array[String]
 
@@ -60,7 +14,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
-
+	
 func add_item(id: String) -> void:
 	inventories.append(id)
 	print("added to inventory:", id)

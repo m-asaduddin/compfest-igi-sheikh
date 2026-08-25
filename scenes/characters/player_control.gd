@@ -8,7 +8,8 @@ const JUMP_VELOCITY = -500.0
 @export var spriteTexture: Texture2D
 @export var camera_limit_left: int = -100
 @export var camera_limit_right: int = 100
-
+@export var camera_limit_top: int = -99999
+@export var camera_limit_bottom : int = 650
 
 var is_in_knockback: bool = false
 @onready var sprite: Sprite2D = $CollisionShape2D/Sprite2D
@@ -18,6 +19,8 @@ func _ready() -> void:
 	#pass
 	camera.limit_left = camera_limit_left
 	camera.limit_right = camera_limit_right
+	camera.limit_top = camera_limit_top
+	camera.limit_bottom = camera_limit_bottom
 	sprite.texture = spriteTexture
 	
 

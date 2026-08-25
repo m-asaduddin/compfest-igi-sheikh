@@ -5,6 +5,8 @@ extends CanvasLayer
 
 func transition_to_scene(target_scene_path: String, is_loading_save: bool = false) -> void:
 	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+	if get_tree().current_scene:
+		get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	anim_player.play("LoadIn")
 	await anim_player.animation_finished

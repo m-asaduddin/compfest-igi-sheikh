@@ -1,6 +1,8 @@
 extends Node
 var save_nodes = {} #{'{id}': (Saveable)X,...}
-var save_state = {} #{'{id}': (Dictionary)dict,...}
+var save_state = {}
+
+#{'{id}': (Dictionary)dict,...}
 
 func register_saveable(saveable: Saveable) -> void:
 	save_nodes[saveable.unique_id] = saveable
