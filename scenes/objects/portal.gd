@@ -11,8 +11,8 @@ extends Interactable
 @export var spawn_point_id: String
 
 func interact() -> void:
-	States.player_spawn_id = spawn_point_id
-	get_tree().change_scene_to_file(target_scene)
+	GameState.scene_entrance_spot = spawn_point_id
+	SceneManager.transition_to_scene(target_scene)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.:
 

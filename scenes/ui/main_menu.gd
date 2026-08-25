@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	
 func new_game_pressed():
 	SaveManager.save_state.clear()
-	States.inventories.clear()
+	GameState.inventories.clear()
 	
 	SceneManager.transition_to_scene(first_scene)
 	

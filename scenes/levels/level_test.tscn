@@ -81,6 +81,7 @@ texture = ExtResource("3_4ptlp")
 
 [node name="SaveableItem" type="Node" parent="Item" unique_id=1938214683]
 script = ExtResource("4_uh3ll")
+unique_id = "item-tang"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
 
 [node name="Item2" parent="." unique_id=372452859 instance=ExtResource("6_4lw2e")]
@@ -90,6 +91,7 @@ texture = ExtResource("3_4ptlp")
 
 [node name="SaveableItem" type="Node" parent="Item2" unique_id=65997085]
 script = ExtResource("4_uh3ll")
+unique_id = "item-tangga"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
 
 [node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("6_uh3ll")]

@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-States="*uid://bdveuud2ssakk"
+States="uid://bdveuud2ssakk"
 SaveManager="*uid://bsqd3efi1ls8a"
 SceneManager="*uid://begm8ueq78woi"
+GameState="*uid://x5gt35nw54xr"
 
 [display]
 

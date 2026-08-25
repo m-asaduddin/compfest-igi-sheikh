@@ -17,5 +17,5 @@ func load_save_data(_data: Dictionary) -> void:
 	pass
 
 func _exit_tree() -> void:
-	#SaveManager.unregister_saveable(self)
+	SaveManager.unregister_saveable(self)
 	pass

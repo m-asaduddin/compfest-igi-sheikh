@@ -9,6 +9,7 @@ const JUMP_VELOCITY = -500.0
 @export var camera_limit_left: int = -100
 @export var camera_limit_right: int = 100
 
+
 var is_in_knockback: bool = false
 @onready var sprite: Sprite2D = $CollisionShape2D/Sprite2D
 @onready var camera: Camera2D = $Camera2D

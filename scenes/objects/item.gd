@@ -2,7 +2,7 @@ extends Interactable
 
 @export var item_name: String
 @export var texture: Texture2D
-var item_id: String
+var item_id : String = ""
 
 func _ready() -> void:
 	item_id = item_name.to_lower().replace(" ", "_")
@@ -10,8 +10,8 @@ func _ready() -> void:
 		var child : SaveableItem = get_node("SaveableItem")
 		child.load_save_data(SaveManager.save_state)
 	
-	if States.inventories.has(item_id):
-		queue_free()
+	if GameState.inventories.has(item_id):
+		disappear()
 	sprite.texture = texture
 	labelNode.text = "Press [E] to pick up " + item_name
 
@@ -25,15 +25,16 @@ func interact() -> void:
 	
 
 func collect(no_noise = false, bypass_inventory = false):
+	print("item.gd: item collected")
 	if find_child("SaveableItem"):
-		var child : SaveableItem = get_node("SaveableItem")
+		var child : Saveable = get_node("SaveableItem")
 		child.collect()
-		
-		
-	
-	if not States.inventories.has(item_id) or bypass_inventory:
-		States.add_item(item_id)
-	
-	
-	queue_free()
+	else:
+		if not GameState.inventories.has(item_id) or bypass_inventory:
+			GameState.add_item(item_id)
+	disappear()
+func disappear():
+	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED
+
 	

@@ -12,12 +12,12 @@ func transition_to_scene(target_scene_path: String, is_loading_save: bool = fals
 	if not is_loading_save and get_tree().current_scene.name != "MainMenu":
 		SaveManager.capture_current_scene_state()
 	
+	if is_loading_save:
+		SaveManager.load_from_disk()
+	
 	get_tree().change_scene_to_file(target_scene_path)
 	
 	await get_tree().process_frame
-	
-	if is_loading_save:
-		SaveManager.load_from_disk()
 	
 	anim_player.play("LoadOut")
 	await anim_player.animation_finished
