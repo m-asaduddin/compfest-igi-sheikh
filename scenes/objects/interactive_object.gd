@@ -30,12 +30,10 @@ func try_combine_with_item(item_id: String) -> void:
 	if result.get("success", false):
 		if result.get("consumes_item", false):
 			GameState.use_item(result.get("used_item", item_id))
+		var idx = GameState.inventories.find(item_id)
+		SceneManager.remove_item(idx)
 		apply_result(result)
-		match object_id:
-			"street" :
-				StoryOrchestrator.player_affected_world_state["street_blockaded"] = true
-			"dog_leash":
-				StoryOrchestrator.player_affected_world_state["dog_unleashed"] = true
+		StoryOrchestrator.change_world_state(object_id)
 		return
 	print(result.get("message", "Tindakan tidak berhasil."))
 

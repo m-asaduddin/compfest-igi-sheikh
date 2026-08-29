@@ -23,7 +23,9 @@ func add_item(id: String) -> void:
 	
 func use_item(id: String) -> void:
 	if inventories.has(id):
+		#var idx = inventories.find(id)
 		inventories.erase(id)
+		#SceneManager.remove_item(idx)
 	if selected_item.get("id", "") == id:
 		selected_item = {}
 	is_inventory_open = false

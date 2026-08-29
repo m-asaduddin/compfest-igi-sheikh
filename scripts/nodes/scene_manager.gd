@@ -35,6 +35,9 @@ func toggle_inventory():
 	
 func add_item(name: String, texture: Texture2D):
 	_inventoryItemList.add_item(name, texture)
+
+func remove_item(idx: int):
+	_inventoryItemList.remove_item(idx)
 		
 		
 	

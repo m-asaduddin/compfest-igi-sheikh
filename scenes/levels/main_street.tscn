@@ -97,12 +97,12 @@ position = Vector2(2324, 552)
 
 [node name="Item2" parent="." unique_id=372452859 instance=ExtResource("2_ycx43")]
 position = Vector2(1446, 560)
-item_name = "Blokade"
+item_name = "Tang"
 texture = ExtResource("3_omobp")
 
 [node name="SaveableItem" type="Node" parent="Item2" unique_id=65997085]
 script = ExtResource("4_ctqee")
-unique_id = "blokade"
+unique_id = "item-tang"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
 
 [node name="Player" parent="." unique_id=1102112952 instance=ExtResource("6_wgegj")]

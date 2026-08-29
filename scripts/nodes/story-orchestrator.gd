@@ -191,3 +191,10 @@ func resolve(object_id: String, item_id: String) -> Dictionary:
 		"success": false,
 		"message": "Tidak ada kombinasi yang cocok. object id: " + object_id + " item id:" + item_id,
 	}
+
+func change_world_state(object_id: String):
+	match object_id:
+		"street" :
+			StoryOrchestrator.player_affected_world_state["street_blockaded"] = true
+		"dog_leash":
+			StoryOrchestrator.player_affected_world_state["dog_unleashed"] = true
