@@ -860,6 +860,7 @@ position = Vector2(-10, -22.75)
 shape = SubResource("RectangleShape2D_5811a")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1635186547]
+z_index = 2
 position = Vector2(12, -29.25)
 scale = Vector2(0.37923425, 0.37923422)
 sprite_frames = SubResource("SpriteFrames_gpktr")

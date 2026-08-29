@@ -95,14 +95,14 @@ position = Vector2(7395, 572)
 [node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
 position = Vector2(2324, 552)
 
-[node name="Item2" parent="." unique_id=372452859 instance=ExtResource("2_ycx43")]
-position = Vector2(1446, 560)
-item_name = "Tang"
+[node name="Blokade_item" parent="." unique_id=372452859 instance=ExtResource("2_ycx43")]
+position = Vector2(18066, 569)
+item_name = "Blokade"
 texture = ExtResource("3_omobp")
 
-[node name="SaveableItem" type="Node" parent="Item2" unique_id=65997085]
+[node name="SaveableItem" type="Node" parent="Blokade_item" unique_id=65997085]
 script = ExtResource("4_ctqee")
-unique_id = "item-tang"
+unique_id = "blokade"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
 
 [node name="Player" parent="." unique_id=1102112952 instance=ExtResource("6_wgegj")]
@@ -148,5 +148,9 @@ target_scene_name = "Gang Melati"
 spawn_point_id = "SpawnRight"
 
 [node name="Blokade_place" parent="." unique_id=1877616496 instance=ExtResource("12_1tp1v")]
-position = Vector2(2988, 568)
+position = Vector2(14857, 576)
+object_id = "street"
+
+[node name="Dog" parent="." unique_id=1213165164 instance=ExtResource("12_1tp1v")]
+position = Vector2(27946, 576)
 object_id = "street"

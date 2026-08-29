@@ -14,7 +14,7 @@ func _ready() -> void:
 	if GameState.inventories.has(item_id):
 		disappear()
 	sprite.texture = texture
-	labelNode.text = "Press [E] to pick up " + item_name
+	labelNode.text = "Tekan [E] untuk mengambil " + item_name
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

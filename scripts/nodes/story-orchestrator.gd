@@ -41,11 +41,11 @@ var time_values = {
 	
 }
 
-var item_interaction = {
+var _item_interaction = {
 	"street": {
 		"blokade": {
 			"success": true,
-			"message": ""
+			"message": "Jalan Utama Berhasil di Tutup"
 		},
 		"tang": {
 			"success": false,
@@ -67,7 +67,7 @@ var item_interaction = {
 		},
 		"gunting": {
 			"success": true,
-			"message": ""
+			"message": "Tali Anjing berhasil di potong"
 		}
 	},
 	"bomb_wire": {
@@ -184,7 +184,7 @@ func trigger_ending_cutscene(outcome_name: String) -> void:
 	# Call your Scene Manager transition framework here!
 
 func resolve(object_id: String, item_id: String) -> Dictionary:
-	var object_map = item_interaction.get(object_id, {})
+	var object_map = _item_interaction.get(object_id, {})
 	if object_map.has(item_id):
 		return object_map[item_id]
 	return {
@@ -195,6 +195,6 @@ func resolve(object_id: String, item_id: String) -> Dictionary:
 func change_world_state(object_id: String):
 	match object_id:
 		"street" :
-			StoryOrchestrator.player_affected_world_state["street_blockaded"] = true
+			player_affected_world_state["street_blockaded"] = true
 		"dog_leash":
-			StoryOrchestrator.player_affected_world_state["dog_unleashed"] = true
+			player_affected_world_state["dog_unleashed"] = true

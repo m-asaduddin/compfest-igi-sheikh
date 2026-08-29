@@ -22,10 +22,10 @@ func add_item(id: String) -> void:
 	print("added to inventory:", id)
 	
 func use_item(id: String) -> void:
+	var idx = inventories.find(id)
 	if inventories.has(id):
-		#var idx = inventories.find(id)
 		inventories.erase(id)
-		#SceneManager.remove_item(idx)
+		SceneManager.remove_item(idx)
 	if selected_item.get("id", "") == id:
 		selected_item = {}
 	is_inventory_open = false
@@ -39,8 +39,13 @@ func select_item(index: int) -> void:
 	var item_id = inventories[index]
 	selected_item = {"index": index, "id": item_id}
 	print("selected item:\n index:", index, ", name:", item_id)
-	InteractionService.combine_with_item(item_id)
-	use_item(item_id)
+	if interaction_target != null:
+		# Player is interacting with an object — let the object decide the outcome
+		InteractionService.combine_with_item(item_id)
+	else:
+		# Just browsing inventory — close it without consuming the item
+		#SceneManager.toggle_inventory()
+		selected_item = {}
 
 func remove_selected() -> void:
 	selected_item = {}

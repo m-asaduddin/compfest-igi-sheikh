@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://icy2ymuchyoc" path="res://assets/sprites/levels/Background-Kantor-Pos.png" id="2_m5vm6"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="3_xkjoh"]
 [ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="4_fge3m"]
+[ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="5_fge3m"]
+[ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="6_a07i7"]
+[ext_resource type="Script" uid="uid://dvshf0k8ascox" path="res://scripts/save-sys/saveable-item.gd" id="7_b6vpw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
 size = Vector2(201.06595, 26.169617)
@@ -22,7 +25,7 @@ texture = ExtResource("2_m5vm6")
 centered = false
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=131352529]
-position = Vector2(827.99994, 509)
+position = Vector2(827.99994, 483.99997)
 scale = Vector2(13.542821, 2.9685297)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=482591856]
@@ -48,8 +51,8 @@ scale = Vector2(6.84, 1)
 shape = SubResource("RectangleShape2D_5811a")
 
 [node name="Player" parent="." unique_id=1102112952 instance=ExtResource("3_xkjoh")]
-position = Vector2(343, 417.00003)
-scale = Vector2(1.9536852, 1.9536852)
+position = Vector2(826, 402.00003)
+scale = Vector2(2, 2)
 camera_limit_left = -20
 camera_limit_right = 2685
 camera_limit_top = -1000
@@ -63,3 +66,13 @@ position = Vector2(123, 482)
 target_scene = "uid://bhqajjc2kh436"
 target_scene_name = "Jalan Utama"
 spawn_point_id = "SpawnFromWarehouse"
+
+[node name="Tang_item" parent="." unique_id=372452859 instance=ExtResource("5_fge3m")]
+position = Vector2(1369, 306)
+item_name = "Tang"
+texture = ExtResource("6_a07i7")
+
+[node name="SaveableItem" type="Node" parent="Tang_item" unique_id=19339860]
+script = ExtResource("7_b6vpw")
+unique_id = "tang"
+metadata/_custom_type_script = "uid://dvshf0k8ascox"
