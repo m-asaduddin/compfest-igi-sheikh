@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://begm8ueq78woi"]
 
 [ext_resource type="Script" uid="uid://4g1r8c4y4ijp" path="res://scripts/nodes/scene_manager.gd" id="1_xyasa"]
+[ext_resource type="PackedScene" uid="uid://b8gb3qqjtnm1s" path="res://scenes/ui/inventory.tscn" id="2_p4645"]
 
 [sub_resource type="Animation" id="Animation_p4645"]
 resource_name = "LoadIn"
@@ -69,3 +70,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="Inventory" parent="." unique_id=1171000229 instance=ExtResource("2_p4645")]
+visible = false

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://d0pacuosref6q"]
+
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_m5vm6"]
+[ext_resource type="Texture2D" uid="uid://icy2ymuchyoc" path="res://assets/sprites/levels/Background-Kantor-Pos.png" id="2_m5vm6"]
+[ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="3_xkjoh"]
+[ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="4_fge3m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
+size = Vector2(201.06595, 26.169617)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
+
+[node name="LevelTest" type="Node2D" unique_id=1840508291]
+script = ExtResource("1_m5vm6")
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=1318409331]
+position = Vector2(-29, -86)
+
+[node name="Sprite2D" type="Sprite2D" parent="Backgrounds" unique_id=1338403156]
+scale = Vector2(1.0833331, 1.0833334)
+texture = ExtResource("2_m5vm6")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=131352529]
+position = Vector2(827.99994, 509)
+scale = Vector2(13.542821, 2.9685297)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=482591856]
+position = Vector2(37.621414, 4.4322815)
+shape = SubResource("RectangleShape2D_ycf23")
+
+[node name="BoundaryLeft" type="StaticBody2D" parent="." unique_id=835273372]
+position = Vector2(-60.999992, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryLeft" unique_id=385809054]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="BoundaryRight" type="StaticBody2D" parent="." unique_id=1065085944]
+position = Vector2(2724.0002, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryRight" unique_id=1894498584]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("3_xkjoh")]
+position = Vector2(343, 417.00003)
+scale = Vector2(1.9536852, 1.9536852)
+camera_limit_left = -20
+camera_limit_right = 2685
+camera_limit_top = -1000
+player_face = "left"
+
+[node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
+position = Vector2(442, 473)
+
+[node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("4_fge3m")]
+position = Vector2(123, 482)
+target_scene = "uid://bhqajjc2kh436"
+target_scene_name = "Jalan Utama"
+spawn_point_id = "SpawnFromWarehouse"

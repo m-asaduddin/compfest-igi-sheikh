@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var color_rect: ColorRect = $ColorRect
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var inventory: Control = $Inventory
 
 func transition_to_scene(target_scene_path: String, is_loading_save: bool = false) -> void:
 	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -25,3 +26,11 @@ func transition_to_scene(target_scene_path: String, is_loading_save: bool = fals
 	await anim_player.animation_finished
 	
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+func toggle_inventory():
+	GameState.is_inventory_open = !GameState.is_inventory_open
+	inventory.visible = GameState.is_inventory_open
+		
+		
+	
+	

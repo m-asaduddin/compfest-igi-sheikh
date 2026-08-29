@@ -2,8 +2,8 @@ extends Node
 
 var player_affected_world_state = {
 	"paket_swapped" = false,
-	"street_blockaded" = true, #ini biar ke gang pas jl ke rumah2
-	"dog_unleashed" = true,
+	"street_blockaded" = false, #ini biar ke gang pas jl ke rumah2
+	"dog_unleashed" = false,
 }
 var routes = {
 	"base":{
@@ -39,6 +39,51 @@ var time_values = {
 	"antar_paket_x": 1, 
 	"antar_paket_start": 1, "antar_paket_proceeding": 1,
 	
+}
+
+var item_interaction = {
+	"street" : {
+		"item-blokade" : {
+			"success": true,
+			"message": ""
+		},
+		"item-tang" : {
+			"success": false,
+			"message": "Tidak dapat mengguakan Tang di sini"
+		},
+		"item-gunting" : {
+			"success": false,
+			"message": "Aneh rasanya jika menggunakan gunting tanpa alasan"
+		}
+	},
+	"dog_leash": {
+		"item-blokade" : {
+			"success": false,
+			"message": "Anjing ini tidak perlu ditambah garis peringatan"
+		},
+		"item-tang" : {
+			"success": false,
+			"message": "Tidak bisa menggunakan tang, perlu alat pemotong yg lebih tajam"
+		},
+		"item-gunting" : {
+			"success": true,
+			"message": ""
+		}
+	},
+	"bomb_wire": {
+		"item-blokade" : {
+			"success": false,
+			"message": "Tidak perlu garis peringatan. BOMB INI AKAN MELEDAK!"
+		},
+		"item-tang" : {
+			"success": true,
+			"message": ""
+		},
+		"item-gunting" : {
+			"success": false,
+			"message": "Butuh alat yang lebih kuat untuk memotong kabel ini"
+		}
+	}
 }
 
 var current_branch: String = "base"
@@ -137,4 +182,12 @@ func trigger_ending_cutscene(outcome_name: String) -> void:
 	print("GAME OVER OUTCOME TRIGGERED: ", outcome_name)
 	# route_times outputs: "death_explosion", "success", "enprisonment_1", etc.
 	# Call your Scene Manager transition framework here!
-	
+
+func resolve(object_id: String, item_id: String) -> Dictionary:
+	var object_map = item_interaction.get(object_id, {})
+	if object_map.has(item_id):
+		return object_map[item_id]
+	return {
+		"success": false,
+		"message": "Tidak ada kombinasi yang cocok. object id: " + object_id + " item id:" + item_id,
+	}

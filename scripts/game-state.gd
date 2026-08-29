@@ -1,34 +1,49 @@
 extends Node
 
-var inventories: Array[String]
-
+var inventories: Array[String] = []
 var selected_item : Dictionary = {}
 var current_scene : String = ""
 var scene_entrance_spot : String = ""
 var time : int = 0
+var interaction_target: Node = null
+var is_inventory_open: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 func _process(delta: float) -> void:
 	pass
 	
 func add_item(id: String) -> void:
+	if inventories.has(id):
+		return
 	inventories.append(id)
 	print("added to inventory:", id)
 	
 func use_item(id: String) -> void:
-	inventories.erase(id)
+	if inventories.has(id):
+		inventories.erase(id)
+	if selected_item.get("id", "") == id:
+		selected_item = {}
+	is_inventory_open = false
+	interaction_target = null
+	print("used item:", id)
 
 func select_item(index: int) -> void:
-	var item_name = inventories[index]
-	selected_item.assign({index: item_name})
-	print("selected item:\n index:", index, ", name:", item_name)
+	if index < 0 or index >= inventories.size():
+		print("invalid inventory index: ", index)
+		return
+	var item_id = inventories[index]
+	selected_item = {"index": index, "id": item_id}
+	print("selected item:\n index:", index, ", name:", item_id)
+	if interaction_target and interaction_target.has_method("try_combine_with_item"):
+		interaction_target.try_combine_with_item(item_id)
+		return
+	use_item(item_id)
 
 func remove_selected() -> void:
-	selected_item.assign({})
+	selected_item = {}
 
 func game_over():
 	SceneManager.transition_to_scene("res://scenes/ui/game_over.tscn")

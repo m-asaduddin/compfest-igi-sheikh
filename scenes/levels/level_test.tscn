@@ -102,7 +102,6 @@ spawn_point_id = "SpawnLeft"
 
 [node name="Player" parent="." unique_id=1102112952 instance=ExtResource("2_yluh8")]
 position = Vector2(253, 548)
-spriteTexture = ExtResource("3_4ptlp")
 camera_limit_left = -20
 camera_limit_right = 2810
 camera_limit_top = -1000

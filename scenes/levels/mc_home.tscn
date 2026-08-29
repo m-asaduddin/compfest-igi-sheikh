@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://d3yq6y4k8dl56"]
+
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_ja3vq"]
+[ext_resource type="Texture2D" uid="uid://djpudoyegtt7b" path="res://assets/sprites/levels/Background-Rumah-MC.png" id="2_5u1q3"]
+[ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="10_8gcvi"]
+[ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="11_d7d68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
+size = Vector2(184, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
+
+[node name="LevelTest" type="Node2D" unique_id=1840508291]
+script = ExtResource("1_ja3vq")
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=1318409331]
+position = Vector2(-29, -86)
+
+[node name="Sprite2D" type="Sprite2D" parent="Backgrounds" unique_id=1338403156]
+scale = Vector2(1.158333, 1.1583332)
+texture = ExtResource("2_5u1q3")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=131352529]
+position = Vector2(827.99994, 509)
+scale = Vector2(13.542821, 2.9685297)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=482591856]
+position = Vector2(12.7743, 1.3474684)
+shape = SubResource("RectangleShape2D_ycf23")
+
+[node name="BoundaryLeft" type="StaticBody2D" parent="." unique_id=835273372]
+position = Vector2(-60.999992, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryLeft" unique_id=385809054]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="BoundaryRight" type="StaticBody2D" parent="." unique_id=1065085944]
+position = Vector2(2117.0002, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryRight" unique_id=1894498584]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("11_d7d68")]
+position = Vector2(1695.0001, 424)
+scale = Vector2(1.867475, 1.867475)
+camera_limit_left = -20
+camera_limit_right = 2050
+camera_limit_top = -1000
+player_face = "left"
+
+[node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
+position = Vector2(1673, 473)
+
+[node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("10_8gcvi")]
+position = Vector2(1912, 482)
+target_scene = "uid://bhqajjc2kh436"
+target_scene_name = "Jalan Utama"
+spawn_point_id = "SpawnFromHome"

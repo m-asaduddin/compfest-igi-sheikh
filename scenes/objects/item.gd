@@ -1,4 +1,5 @@
 extends Interactable
+class_name Item
 
 @export var item_name: String
 @export var texture: Texture2D
@@ -21,6 +22,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func interact() -> void:
+	await player.play_grab_animation()
 	collect()
 	
 
@@ -32,7 +34,9 @@ func collect(no_noise = false, bypass_inventory = false):
 	else:
 		if not GameState.inventories.has(item_id) or bypass_inventory:
 			GameState.add_item(item_id)
+	itemList.add_item(item_name, texture)
 	disappear()
+	
 func disappear():
 	visible = false
 	process_mode = Node.PROCESS_MODE_DISABLED

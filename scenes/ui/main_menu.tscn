@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sl1te")
-first_scene = "uid://c25753h4cmm5c"
+first_scene = "uid://bhqajjc2kh436"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1941120488]
 layout_mode = 1
