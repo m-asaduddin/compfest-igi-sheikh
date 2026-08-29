@@ -34,10 +34,10 @@ var npc_route_actions = {
 	"paket_b": ["ambil_paket", "antar_paket_1", "paket_proceeding"],
 }
 var time_values = {
-	"mc_house": 3, "mc_gudang": 3, "base_proceed": 2,
-	"ambil_paket": 1, "antar_paket_1": 5, "paket_proceeding": 5,
-	"antar_paket_x": 5,
-	"antar_paket_start": 3, "antar_paket_proceeding": 3,
+	"mc_house": 9, "mc_gudang": 10, "base_proceed": 10,
+	"ambil_paket": 15, "antar_paket_1": 5, "paket_proceeding": 5,
+	"antar_paket_x": 30,
+	"antar_paket_start": 15, "antar_paket_proceeding": 3,
 	
 }
 
