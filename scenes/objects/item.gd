@@ -34,7 +34,7 @@ func collect(no_noise = false, bypass_inventory = false):
 	else:
 		if not GameState.inventories.has(item_id) or bypass_inventory:
 			GameState.add_item(item_id)
-	itemList.add_item(item_name, texture)
+	SceneManager.add_item(item_name, texture)
 	disappear()
 	
 func disappear():

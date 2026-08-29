@@ -32,7 +32,7 @@ func try_combine_with_item(item_id: String) -> void:
 		apply_result(result)
 		match object_id:
 			"street" :
-				StoryOrchestrator.player_affxxected_world_state["street_blockaded"] = true
+				StoryOrchestrator.player_affected_world_state["street_blockaded"] = true
 			"dog_leash":
 				StoryOrchestrator.player_affected_world_state["dog_unleashed"] = true
 		return

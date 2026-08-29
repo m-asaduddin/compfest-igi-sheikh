@@ -29,8 +29,6 @@ func collect(no_noise = true, bypass_inventory_exclusive = false) -> void:
 func add_to_inventory(bypass_inventory_exclusive = false):
 	if not GameState.inventories.has(unique_id) or bypass_inventory_exclusive:
 		GameState.add_item(unique_id)
-		
-	
 	
 
 func disappear():
