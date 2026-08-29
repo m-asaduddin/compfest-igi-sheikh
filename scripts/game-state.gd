@@ -1,10 +1,10 @@
 extends Node
 
 var inventories: Array[String] = []
-var selected_item : Dictionary = {}
-var current_scene : String = ""
-var scene_entrance_spot : String = ""
-var time : int = 0
+var selected_item: Dictionary = {}
+var current_scene: String = ""
+var scene_entrance_spot: String = ""
+var time: int = 0
 var interaction_target: Node = null
 var is_inventory_open: bool = false
 
@@ -37,9 +37,7 @@ func select_item(index: int) -> void:
 	var item_id = inventories[index]
 	selected_item = {"index": index, "id": item_id}
 	print("selected item:\n index:", index, ", name:", item_id)
-	if interaction_target and interaction_target.has_method("try_combine_with_item"):
-		interaction_target.try_combine_with_item(item_id)
-		return
+	InteractionService.combine_with_item(item_id)
 	use_item(item_id)
 
 func remove_selected() -> void:

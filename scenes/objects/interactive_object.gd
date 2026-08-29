@@ -13,6 +13,7 @@ func _ready() -> void:
 		object_id = name.to_lower().replace(" ", "_")
 	if GameState == null:
 		return
+	GameState.interaction_target = self
 	print("object_id: ",object_id)
 
 func _process(_delta: float) -> void:
@@ -42,7 +43,7 @@ func apply_result(result: Dictionary) -> void:
 	if result.has("message"):
 		print(result["message"])
 	if result.get("success", false):
-		GameState.close_inventory()
+		SceneManager.toggle_inventory()
 		if result.get("remove_object", false):
 			queue_free()
 

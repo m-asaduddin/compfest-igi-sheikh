@@ -22,6 +22,7 @@ SaveManager="*uid://bsqd3efi1ls8a"
 SceneManager="*uid://begm8ueq78woi"
 GameState="*uid://x5gt35nw54xr"
 StoryOrchestrator="*uid://r2dbepbbq7ue"
+InteractionService="*uid://ibdddnfemq4d"
 
 [display]
 

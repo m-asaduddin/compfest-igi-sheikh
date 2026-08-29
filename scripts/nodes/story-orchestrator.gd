@@ -2,25 +2,25 @@ extends Node
 
 var player_affected_world_state = {
 	"paket_swapped" = false,
-	"street_blockaded" = false, #ini biar ke gang pas jl ke rumah2
+	"street_blockaded" = false, # ini biar ke gang pas jl ke rumah2
 	"dog_unleashed" = false,
 }
 var routes = {
-	"base":{
-		"paket_a":{
-			"jalan_x":"death_explosion",
-			"jalan_gng":{
+	"base": {
+		"paket_a": {
+			"jalan_x": "death_explosion",
+			"jalan_gng": {
 				"base": "enprisonment_2",
 				"dog": "success"
 			}
 		},
-		"paket_b":{
+		"paket_b": {
 			"jalan_x": "enprisonment_1",
 			"jalan_gng": "enprisonment_2"
 		}
 	}
 }
-var npc_route_actions = { 
+var npc_route_actions = {
 	#base: awal awal
 	#rumah -> ke gudang ambil paket -> exit
 	"base": ["mc_house", "mc_gudang", "base_proceed"],
@@ -36,50 +36,50 @@ var npc_route_actions = {
 var time_values = {
 	"mc_house": 3, "mc_gudang": 3, "base_proceed": 2,
 	"ambil_paket": 1, "antar_paket_1": 5, "paket_proceeding": 5,
-	"antar_paket_x": 5, 
+	"antar_paket_x": 5,
 	"antar_paket_start": 3, "antar_paket_proceeding": 3,
 	
 }
 
 var item_interaction = {
-	"street" : {
-		"item-blokade" : {
+	"street": {
+		"blokade": {
 			"success": true,
 			"message": ""
 		},
-		"item-tang" : {
+		"tang": {
 			"success": false,
 			"message": "Tidak dapat mengguakan Tang di sini"
 		},
-		"item-gunting" : {
+		"gunting": {
 			"success": false,
 			"message": "Aneh rasanya jika menggunakan gunting tanpa alasan"
 		}
 	},
 	"dog_leash": {
-		"item-blokade" : {
+		"blokade": {
 			"success": false,
 			"message": "Anjing ini tidak perlu ditambah garis peringatan"
 		},
-		"item-tang" : {
+		"tang": {
 			"success": false,
 			"message": "Tidak bisa menggunakan tang, perlu alat pemotong yg lebih tajam"
 		},
-		"item-gunting" : {
+		"gunting": {
 			"success": true,
 			"message": ""
 		}
 	},
 	"bomb_wire": {
-		"item-blokade" : {
+		"blokade": {
 			"success": false,
 			"message": "Tidak perlu garis peringatan. BOMB INI AKAN MELEDAK!"
 		},
-		"item-tang" : {
+		"tang": {
 			"success": true,
 			"message": ""
 		},
-		"item-gunting" : {
+		"gunting": {
 			"success": false,
 			"message": "Butuh alat yang lebih kuat untuk memotong kabel ini"
 		}
@@ -139,7 +139,7 @@ func resolve_action_completion(action_name: String) -> void:
 	elif action_name == "paket_proceeding":
 		# End of packages blocks: check where they go next based on player choice
 		# (e.g. choice of road made by environmental blocks or distractions)
-		if player_affected_world_state["street_blockaded"]: 
+		if player_affected_world_state["street_blockaded"]:
 			switch_to_branch("jalan_gng")
 		else:
 			switch_to_branch("jalan_x")
