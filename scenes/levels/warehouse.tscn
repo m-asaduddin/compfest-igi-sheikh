@@ -74,7 +74,6 @@ position = Vector2(2559, 449)
 data = ExtResource("6_fge3m")
 
 [node name="Label" parent="Tang_item" index="1" unique_id=224947407]
-visible = true
 offset_top = -64.0
 offset_bottom = -30.0
 

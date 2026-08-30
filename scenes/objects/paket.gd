@@ -1,11 +1,13 @@
-extends InteractiveObject
+extends Interactable
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	requires_inventory = false
+	labelText = "[E] periksa paket"
 	super._ready()
+
 func interact() -> void:
-	StoryOrchestrator.player_affected_world_state["paket_swapped"] = true
-	print("paket berhasil ditukar!")
-	SceneManager.show_dialog("Paket Berhasil ditukar!")
+	#self.get_parent().add_child(overlay)
+	print("box pressed")
+	SceneManager.show_box_overlay()
 	#HUD.show_message("Paket berhasil ditukar!")

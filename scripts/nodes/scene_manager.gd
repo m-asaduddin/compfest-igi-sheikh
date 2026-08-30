@@ -64,3 +64,7 @@ func _on_dialog_dismissed() -> void:
 	get_tree().paused = false
 	GameState.is_inventory_open = false
 	_inventory.visible = GameState.is_inventory_open
+	
+	
+func show_box_overlay() -> void:
+	$PaketOverlay.visible = true
