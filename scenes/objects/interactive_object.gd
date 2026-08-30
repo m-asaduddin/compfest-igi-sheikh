@@ -1,0 +1,48 @@
+extends Interactable
+class_name InteractiveObject
+
+@export var object_id: String = ""
+@export var interaction_label: String = "Press [E] to interact"
+@export var requires_inventory: bool = true
+@export var remove_on_success: bool = true
+@export var show_message_on_success: bool = true
+@export var interaction_result_text: String = ""
+
+func _ready() -> void:
+	if labelNode:
+		labelNode.text = interaction_label
+	if object_id == "":
+		object_id = name.to_lower().replace(" ", "_")
+	print("object_id: ", object_id)
+
+func _process(_delta: float) -> void:
+	pass
+
+func interact() -> void:
+	if requires_inventory:
+		# Set target NOW so select_item knows this open came from an object
+		GameState.interaction_target = self
+		SceneManager.toggle_inventory()
+		return
+
+func try_combine_with_item(item_data: ItemData) -> void:
+	var result = StoryOrchestrator.resolve(object_id, item_data.id)
+	if result.get("success", false):
+		GameState.use_item(item_data.id)
+		apply_result(result)
+		if remove_on_success:
+			queue_free()
+		return
+	# Combination failed — item stays in inventory, show feedback
+	SceneManager.show_dialog(result.get("message", "Tindakan tidak berhasil."))
+	#print(result.get("message", "Tindakan tidak berhasil."))
+	GameState.interaction_target = null
+
+func apply_result(result: Dictionary) -> void:
+	if result.get("success", false):
+		self.set_collision_mask_value(2, false)
+	pass
+
+func _input(event: InputEvent) -> void:
+	if player_in_area and event.is_action_pressed("interact"):
+		interact()

@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://gjduqbfthd7"]
+
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_1falj"]
+[ext_resource type="Texture2D" uid="uid://dswsasfa7m1r4" path="res://assets/sprites/levels/Background-Gang-Kenanga.png" id="2_cvpp6"]
+[ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="3_8gb7n"]
+[ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="4_5dp2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
+size = Vector2(507.57516, 46.718536)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
+
+[node name="GangKenanga" type="Node2D" unique_id=1840508291]
+script = ExtResource("1_1falj")
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=1318409331]
+position = Vector2(-29, -86)
+
+[node name="Sprite2D" type="Sprite2D" parent="Backgrounds" unique_id=1338403156]
+scale = Vector2(1.0833331, 1.0833334)
+texture = ExtResource("2_cvpp6")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=131352529]
+position = Vector2(819, 554)
+scale = Vector2(13.542821, 2.9685297)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=482591856]
+position = Vector2(190.87602, 14.706726)
+shape = SubResource("RectangleShape2D_ycf23")
+
+[node name="BoundaryLeft" type="StaticBody2D" parent="." unique_id=835273372]
+position = Vector2(-60.999992, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryLeft" unique_id=385809054]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="BoundaryRight" type="StaticBody2D" parent="." unique_id=1065085944]
+position = Vector2(6818, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryRight" unique_id=1894498584]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
+position = Vector2(310, 525)
+
+[node name="SpawnFromEmpty" type="Marker2D" parent="." unique_id=1127327965]
+position = Vector2(6305, 525)
+
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("3_8gb7n")]
+position = Vector2(326, 499)
+camera_limit_left = -30
+camera_limit_right = 6798
+
+[node name="portal_utama" parent="." unique_id=1062156617 instance=ExtResource("4_5dp2l")]
+position = Vector2(77, 530)
+target_scene = "uid://bhqajjc2kh436"
+target_scene_name = "Jalan Utama"
+spawn_point_id = "SpawnFromGang1"
+
+[node name="portal_empty_house" parent="." unique_id=372452859 instance=ExtResource("4_5dp2l")]
+position = Vector2(6459.0005, 530)
+target_scene = "uid://das15pl7c1vdh"
+target_scene_name = "Rumah Kosong"
+spawn_point_id = "SpawnLeft"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d03syjq4bpyhx"]
+
+[ext_resource type="Script" uid="uid://dc315jen6ra0" path="res://scripts/ItemData.gd" id="1_0dkek"]
+[ext_resource type="Texture2D" uid="uid://b3p3hhk4rf745" path="res://assets/sprites/interactables/gunting.png" id="2_clncd"]
+
+[resource]
+script = ExtResource("1_0dkek")
+id = "gunting"
+name = "Gunting"
+texture = ExtResource("2_clncd")
+metadata/_custom_type_script = "uid://dc315jen6ra0"

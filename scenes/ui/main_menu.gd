@@ -10,8 +10,6 @@ func _ready() -> void:
 	newgame_btn.pressed.connect(new_game_pressed)
 	loadgame_btn.pressed.connect(continue_pressed)
 	
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

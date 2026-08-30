@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bn31sxfvvttrs"]
+
+[ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="1_3tjv5"]
+[ext_resource type="Script" uid="uid://cj5powvcux2ww" path="res://scenes/objects/paket.gd" id="2_gghut"]
+
+[node name="Paket" unique_id=1213165164 instance=ExtResource("1_3tjv5")]
+script = ExtResource("2_gghut")
+interaction_label = "[E] Tukar Paket"
+requires_inventory = false

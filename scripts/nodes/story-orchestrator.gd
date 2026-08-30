@@ -2,25 +2,25 @@ extends Node
 
 var player_affected_world_state = {
 	"paket_swapped" = false,
-	"street_blockaded" = true, #ini biar ke gang pas jl ke rumah2
-	"dog_unleashed" = true,
+	"street_blockaded" = false, # ini biar ke gang pas jl ke rumah2
+	"dog_unleashed" = false,
 }
 var routes = {
-	"base":{
-		"paket_a":{
-			"jalan_x":"death_explosion",
-			"jalan_gng":{
+	"base": {
+		"paket_a": {
+			"jalan_x": "death_explosion",
+			"jalan_gng": {
 				"base": "enprisonment_2",
 				"dog": "success"
 			}
 		},
-		"paket_b":{
+		"paket_b": {
 			"jalan_x": "enprisonment_1",
 			"jalan_gng": "enprisonment_2"
 		}
 	}
 }
-var npc_route_actions = { 
+var npc_route_actions = {
 	#base: awal awal
 	#rumah -> ke gudang ambil paket -> exit
 	"base": ["mc_house", "mc_gudang", "base_proceed"],
@@ -34,11 +34,56 @@ var npc_route_actions = {
 	"paket_b": ["ambil_paket", "antar_paket_1", "paket_proceeding"],
 }
 var time_values = {
-	"mc_house": 1, "mc_gudang": 1, "base_proceed": 1,
-	"ambil_paket": 1, "antar_paket_1": 1, "paket_proceeding": 1,
-	"antar_paket_x": 1, 
-	"antar_paket_start": 1, "antar_paket_proceeding": 1,
+	"mc_house": 9, "mc_gudang": 10, "base_proceed": 10,
+	"ambil_paket": 15, "antar_paket_1": 5, "paket_proceeding": 5,
+	"antar_paket_x": 30,
+	"antar_paket_start": 15, "antar_paket_proceeding": 3,
 	
+}
+
+var _item_interaction = {
+	"street": {
+		"police-line": {
+			"success": true,
+			"message": "Jalan Utama Berhasil di Tutup"
+		},
+		"tang": {
+			"success": false,
+			"message": "Tidak dapat mengguakan Tang di sini"
+		},
+		"gunting": {
+			"success": false,
+			"message": "Aneh rasanya jika menggunakan gunting tanpa alasan"
+		}
+	},
+	"dog": {
+		"police-line": {
+			"success": false,
+			"message": "Anjing ini tidak perlu ditambah garis polisi"
+		},
+		"tang": {
+			"success": false,
+			"message": "Tidak bisa menggunakan tang, perlu alat pemotong yg lebih tajam"
+		},
+		"gunting": {
+			"success": true,
+			"message": "Tali Anjing berhasil di potong"
+		}
+	},
+	"bomb_wire": {
+		"police-line": {
+			"success": false,
+			"message": "Tidak perlu garis polisi. BOMB INI AKAN MELEDAK!"
+		},
+		"tang": {
+			"success": true,
+			"message": ""
+		},
+		"gunting": {
+			"success": false,
+			"message": "Butuh alat yang lebih kuat untuk memotong kabel ini"
+		}
+	}
 }
 
 var current_branch: String = "base"
@@ -94,7 +139,7 @@ func resolve_action_completion(action_name: String) -> void:
 	elif action_name == "paket_proceeding":
 		# End of packages blocks: check where they go next based on player choice
 		# (e.g. choice of road made by environmental blocks or distractions)
-		if player_affected_world_state["street_blockaded"]: 
+		if player_affected_world_state["street_blockaded"]:
 			switch_to_branch("jalan_gng")
 		else:
 			switch_to_branch("jalan_x")
@@ -137,4 +182,14 @@ func trigger_ending_cutscene(outcome_name: String) -> void:
 	print("GAME OVER OUTCOME TRIGGERED: ", outcome_name)
 	# route_times outputs: "death_explosion", "success", "enprisonment_1", etc.
 	# Call your Scene Manager transition framework here!
-	
+	if outcome_name != "success":
+		SceneManager.transition_to_scene("res://scenes/ui/game_over.tscn")
+
+func resolve(object_id: String, item_id: String) -> Dictionary:
+	var object_map = _item_interaction.get(object_id, {})
+	if object_map.has(item_id):
+		return object_map[item_id]
+	return {
+		"success": false,
+		"message": "Tidak bisa menggunakan " + item_id + " di sini",
+	}

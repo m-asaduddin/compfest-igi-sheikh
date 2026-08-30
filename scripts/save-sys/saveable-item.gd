@@ -27,9 +27,14 @@ func collect(no_noise = true, bypass_inventory_exclusive = false) -> void:
 	disappear()
 	
 func add_to_inventory(bypass_inventory_exclusive = false):
-	if not GameState.inventories.has(unique_id) or bypass_inventory_exclusive:
-		GameState.add_item(unique_id)
-	
+	# Get the ItemData from the parent Item node
+	var item_data: ItemData = get_parent().data
+	if item_data == null:
+		push_error("SaveableItem: parent has no ItemData resource assigned!")
+		return
+	if not GameState._has_item(item_data.id) or bypass_inventory_exclusive:
+		GameState.add_item(item_data.id)
+
 	
 
 func disappear():

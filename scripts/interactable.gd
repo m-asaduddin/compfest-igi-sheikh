@@ -6,6 +6,8 @@ extends Area2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision = $CollisionShape2D
 
+var player: Node2D
+
 var player_in_area = false
 var labelText: String
 
@@ -20,20 +22,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if player_in_area and event.is_action_pressed("interact"):
-		self.remove_child(collision)
-		self.remove_child(sprite)
-		labelNode.visible = false
-		interact()
+		await interact()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
+		player = body
 		labelNode.visible = true
 		player_in_area = true
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
+		player = null
 		labelNode.visible = false
 		player_in_area = false
+		

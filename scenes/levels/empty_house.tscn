@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://das15pl7c1vdh"]
+
+[ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_4mnbi"]
+[ext_resource type="Texture2D" uid="uid://dyililplbjars" path="res://assets/sprites/levels/Background-Rumah-Kosong.png" id="2_4mnbi"]
+[ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="3_st5vv"]
+[ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="4_1117b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
+size = Vector2(244.55759, 34.92816)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mnbi"]
+size = Vector2(5.2862644, 62.765163)
+
+[node name="LevelTest" type="Node2D" unique_id=1840508291]
+script = ExtResource("1_4mnbi")
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=1318409331]
+position = Vector2(-29, -86)
+
+[node name="Sprite2D" type="Sprite2D" parent="Backgrounds" unique_id=1338403156]
+scale = Vector2(1.1124997, 1.1125)
+texture = ExtResource("2_4mnbi")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=131352529]
+position = Vector2(827.99994, 509)
+scale = Vector2(13.542821, 2.9685297)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=482591856]
+position = Vector2(59.36725, 8.811554)
+shape = SubResource("RectangleShape2D_ycf23")
+
+[node name="BoundaryLeft" type="StaticBody2D" parent="." unique_id=835273372]
+position = Vector2(-60.999992, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryLeft" unique_id=385809054]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="BoundaryTable" type="StaticBody2D" parent="." unique_id=936763658]
+position = Vector2(238.99997, 378)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryTable" unique_id=358019513]
+position = Vector2(-4.828575, -2.8529282)
+scale = Vector2(6.84, 0.9999997)
+shape = SubResource("RectangleShape2D_4mnbi")
+
+[node name="BoundaryRight" type="StaticBody2D" parent="." unique_id=1065085944]
+position = Vector2(3327.0002, 270)
+rotation = -1.5707964
+scale = Vector2(4.4526787, 3.5051315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryRight" unique_id=1894498584]
+scale = Vector2(6.84, 1)
+shape = SubResource("RectangleShape2D_5811a")
+
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("3_st5vv")]
+position = Vector2(2953, 424)
+scale = Vector2(1.867475, 1.867475)
+camera_limit_left = -20
+camera_limit_right = 3307
+camera_limit_top = -1000
+player_face = "left"
+
+[node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
+position = Vector2(2931, 473)
+
+[node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("4_1117b")]
+position = Vector2(3170, 482)
+target_scene = "uid://gjduqbfthd7"
+target_scene_name = "Gang Melati"
+spawn_point_id = "SpawnFromEmpty"

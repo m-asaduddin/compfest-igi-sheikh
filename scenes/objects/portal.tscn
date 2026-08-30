@@ -5,6 +5,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek5ad"]
 size = Vector2(200.5, 162.5)
 
+[sub_resource type="LabelSettings" id="LabelSettings_wgegj"]
+font_size = 24
+outline_size = 4
+outline_color = Color(0.05009158, 0.050091572, 0.050091572, 1)
+
 [node name="Portal" type="Area2D" unique_id=372452859]
 collision_layer = 5
 collision_mask = 3
@@ -16,10 +21,12 @@ shape = SubResource("RectangleShape2D_ek5ad")
 
 [node name="Label" type="Label" parent="." unique_id=224947407]
 visible = false
+z_index = 10
 offset_left = -97.0
-offset_top = -121.0
+offset_top = -199.0
 offset_right = 95.0
-offset_bottom = -98.0
+offset_bottom = -165.0
+label_settings = SubResource("LabelSettings_wgegj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
