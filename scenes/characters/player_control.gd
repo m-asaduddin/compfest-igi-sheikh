@@ -39,9 +39,6 @@ func _process(delta: float) -> void:
 	if is_grabbing:
 		velocity.x = 0
 		return
-	if Input.is_action_pressed("special"):
-		sprite.play("ride_left")
-		return
 	if Input.is_action_pressed("left"):
 		sprite.play("run_left")
 		player_face = "left"

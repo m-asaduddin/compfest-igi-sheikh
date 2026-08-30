@@ -20,11 +20,12 @@ position = Vector2(0, -84)
 shape = SubResource("RectangleShape2D_ek5ad")
 
 [node name="Label" type="Label" parent="." unique_id=224947407]
+visible = false
 z_index = 15
 offset_left = -97.0
-offset_top = -304.0
+offset_top = -260.0
 offset_right = 95.0
-offset_bottom = -270.0
+offset_bottom = -226.0
 label_settings = SubResource("LabelSettings_keydj")
 horizontal_alignment = 1
 vertical_alignment = 1

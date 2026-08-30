@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://klg3gtyq5n81"]
 
 [ext_resource type="Script" uid="uid://dc315jen6ra0" path="res://scripts/ItemData.gd" id="1_i1jam"]
+[ext_resource type="Texture2D" uid="uid://dvmqj5tchimr0" path="res://assets/sprites/interactables/tang.png" id="2_rf0l0"]
 
 [resource]
 script = ExtResource("1_i1jam")
 id = "tang"
 name = "Tang"
+texture = ExtResource("2_rf0l0")
 metadata/_custom_type_script = "uid://dc315jen6ra0"

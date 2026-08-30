@@ -11,7 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dqtllofykud1x" path="res://assets/sprites/levels/Background-Jalan-Utama-5.png" id="6_5lib3"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="6_wgegj"]
 [ext_resource type="Resource" uid="uid://t63t354878ej" path="res://items/police-line.tres" id="8_1tp1v"]
-[ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="12_1tp1v"]
+[ext_resource type="PackedScene" uid="uid://c5nocmmkseuqu" path="res://scenes/objects/dog.tscn" id="13_m3iaa"]
+[ext_resource type="PackedScene" uid="uid://cny65xtfq2x2r" path="res://scenes/objects/street_blockade.tscn" id="14_5lib3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
 size = Vector2(320, 20)
@@ -37,7 +38,7 @@ centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="Backgrounds" unique_id=848440789]
 position = Vector2(12059, 0)
-scale = Vector2(1.158333, 1.1583332)
+scale = Vector2(0.81542945, 0.8154297)
 texture = ExtResource("4_1tp1v")
 centered = false
 
@@ -103,6 +104,9 @@ data = ExtResource("8_1tp1v")
 script = ExtResource("4_ctqee")
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
 
+[node name="StreetBlockade" parent="." unique_id=1213165164 instance=ExtResource("14_5lib3")]
+position = Vector2(14900, 579)
+
 [node name="Player" parent="." unique_id=1102112952 instance=ExtResource("6_wgegj")]
 position = Vector2(117, 546)
 camera_limit_left = -20
@@ -145,10 +149,5 @@ target_scene = "uid://djickv5ovobka"
 target_scene_name = "Gang Melati"
 spawn_point_id = "SpawnRight"
 
-[node name="Blokade_place" parent="." unique_id=1877616496 instance=ExtResource("12_1tp1v")]
-position = Vector2(14931, 576)
-object_id = "street"
-
-[node name="Dog" parent="." unique_id=1213165164 instance=ExtResource("12_1tp1v")]
-position = Vector2(27946, 576)
-object_id = "street"
+[node name="Dog" parent="." unique_id=519590660 instance=ExtResource("13_m3iaa")]
+position = Vector2(27898, 571)

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cny65xtfq2x2r"]
+
+[ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="1_uwt60"]
+[ext_resource type="Texture2D" uid="uid://yjg02oj0b2d3" path="res://assets/sprites/levels/police-line-set.png" id="2_hsgno"]
+[ext_resource type="Script" uid="uid://6t0eqfqi42w3" path="res://scenes/objects/street_blockade.gd" id="2_n2w88"]
+
+[node name="StreetBlockade" unique_id=1213165164 instance=ExtResource("1_uwt60")]
+script = ExtResource("2_n2w88")
+object_id = "street"
+interaction_label = "[E] Tutup Jalan"
+remove_on_success = false
+
+[node name="Sprite2D" parent="." index="2" unique_id=961779391]
+visible = false
+position = Vector2(-0.99999905, -57.000004)
+scale = Vector2(0.8396946, 0.8396946)
+texture = ExtResource("2_hsgno")

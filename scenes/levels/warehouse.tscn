@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="5_fge3m"]
 [ext_resource type="Resource" uid="uid://klg3gtyq5n81" path="res://items/tang.tres" id="6_fge3m"]
 [ext_resource type="Script" uid="uid://dvshf0k8ascox" path="res://scripts/save-sys/saveable-item.gd" id="7_b6vpw"]
+[ext_resource type="PackedScene" uid="uid://bn31sxfvvttrs" path="res://scenes/objects/paket.tscn" id="8_a07i7"]
+[ext_resource type="Texture2D" uid="uid://du758wn0essq7" path="res://assets/sprites/levels/perkakas.png" id="9_b6vpw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
 size = Vector2(201.06595, 26.169617)
@@ -62,16 +64,36 @@ player_face = "left"
 position = Vector2(442, 473)
 
 [node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("4_fge3m")]
-position = Vector2(119, 278)
+position = Vector2(110, 297)
 target_scene = "uid://bhqajjc2kh436"
 target_scene_name = "Jalan Utama"
 spawn_point_id = "SpawnFromWarehouse"
 
 [node name="Tang_item" parent="." unique_id=372452859 instance=ExtResource("5_fge3m")]
-position = Vector2(1369, 306)
+position = Vector2(2559, 449)
 data = ExtResource("6_fge3m")
+
+[node name="Label" parent="Tang_item" index="1" unique_id=224947407]
+visible = true
+offset_top = -64.0
+offset_bottom = -30.0
+
+[node name="Sprite2D" parent="Tang_item" index="2" unique_id=1031077818]
+position = Vector2(29, -66)
+rotation = 0.20444086
+scale = Vector2(0.4044147, 0.4218437)
 
 [node name="SaveableItem" type="Node" parent="Tang_item" unique_id=19339860]
 script = ExtResource("7_b6vpw")
 unique_id = "tang"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
+
+[node name="Paket" parent="." unique_id=1213165164 instance=ExtResource("8_a07i7")]
+position = Vector2(2122, 302)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1758456314]
+position = Vector2(2556, 403)
+scale = Vector2(0.29133347, 0.29133347)
+texture = ExtResource("9_b6vpw")
+
+[editable path="Tang_item"]

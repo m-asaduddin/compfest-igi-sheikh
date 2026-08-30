@@ -4,6 +4,8 @@ class_name InteractiveObject
 @export var object_id: String = ""
 @export var interaction_label: String = "Press [E] to interact"
 @export var requires_inventory: bool = true
+@export var remove_on_success: bool = true
+@export var show_message_on_success: bool = true
 @export var interaction_result_text: String = ""
 
 func _ready() -> void:
@@ -28,21 +30,18 @@ func try_combine_with_item(item_data: ItemData) -> void:
 	if result.get("success", false):
 		GameState.use_item(item_data.id)
 		apply_result(result)
-		StoryOrchestrator.change_world_state(object_id)
-		queue_free()
+		if remove_on_success:
+			queue_free()
 		return
 	# Combination failed — item stays in inventory, show feedback
-	print(result.get("message", "Tindakan tidak berhasil."))
+	SceneManager.show_dialog(result.get("message", "Tindakan tidak berhasil."))
+	#print(result.get("message", "Tindakan tidak berhasil."))
 	GameState.interaction_target = null
 
 func apply_result(result: Dictionary) -> void:
-	#if result.has("message"):
-		#print(result["message"])
 	if result.get("success", false):
-		SceneManager.toggle_inventory()
-		if result.get("remove_object", false):
-			queue_free()
-	#pass
+		self.set_collision_mask_value(2, false)
+	pass
 
 func _input(event: InputEvent) -> void:
 	if player_in_area and event.is_action_pressed("interact"):

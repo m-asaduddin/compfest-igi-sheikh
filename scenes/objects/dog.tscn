@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://c5nocmmkseuqu"]
+
+[ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="1_jkxci"]
+[ext_resource type="Script" uid="uid://fn6l0y7rsgbt" path="res://scenes/objects/dog.gd" id="1_tfmc1"]
+[ext_resource type="Texture2D" uid="uid://bx0kk1uf6w1r8" path="res://assets/sprites/dog/dog_idle.png" id="2_tfmc1"]
+[ext_resource type="Texture2D" uid="uid://cf22gl01um3ee" path="res://assets/sprites/dog/dog_idle_unleashed.png" id="3_wlxaj"]
+[ext_resource type="Texture2D" uid="uid://cjiab8frnavrb" path="res://assets/sprites/dog/dog_run_5.png" id="4_j20yn"]
+[ext_resource type="Texture2D" uid="uid://blwwu5j01uotc" path="res://assets/sprites/dog/dog_run_1.png" id="5_ou8n6"]
+[ext_resource type="Texture2D" uid="uid://b3vha5i8qrx2a" path="res://assets/sprites/dog/dog_run_6.png" id="6_r2mt6"]
+[ext_resource type="Texture2D" uid="uid://bbsrc3ajeojo7" path="res://assets/sprites/dog/dog_run_2.png" id="7_0tfjf"]
+[ext_resource type="Texture2D" uid="uid://rmixeukxwxs2" path="res://assets/sprites/dog/dog_run_7.png" id="8_vi3bq"]
+[ext_resource type="Texture2D" uid="uid://ckywe3yr0lm1w" path="res://assets/sprites/dog/dog_run_3.png" id="9_udstv"]
+[ext_resource type="Texture2D" uid="uid://hxp1hy555cod" path="res://assets/sprites/dog/dog_run_8.png" id="10_66i18"]
+[ext_resource type="Texture2D" uid="uid://bqcedvl2mcabf" path="res://assets/sprites/dog/dog_run_4.png" id="11_tt7b4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlxaj"]
+atlas = ExtResource("2_tfmc1")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j20yn"]
+atlas = ExtResource("2_tfmc1")
+region = Rect2(600, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou8n6"]
+atlas = ExtResource("2_tfmc1")
+region = Rect2(1200, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2mt6"]
+atlas = ExtResource("2_tfmc1")
+region = Rect2(1800, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tfjf"]
+atlas = ExtResource("3_wlxaj")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi3bq"]
+atlas = ExtResource("3_wlxaj")
+region = Rect2(600, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udstv"]
+atlas = ExtResource("3_wlxaj")
+region = Rect2(1200, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66i18"]
+atlas = ExtResource("3_wlxaj")
+region = Rect2(1800, 0, 600, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5811a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlxaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j20yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou8n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2mt6")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tfjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi3bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udstv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66i18")
+}],
+"loop": 1,
+"name": &"idle_unleashed",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_j20yn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ou8n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r2mt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0tfjf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vi3bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_udstv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_66i18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_tt7b4")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 13.0
+}]
+
+[node name="Dog" unique_id=1213165164 instance=ExtResource("1_jkxci")]
+collision_mask = 19
+script = ExtResource("1_tfmc1")
+interaction_label = "[E] Lepas Tali"
+remove_on_success = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=577090467]
+position = Vector2(9.999996, -63)
+scale = Vector2(0.34, 0.34)
+sprite_frames = SubResource("SpriteFrames_5811a")
+animation = &"idle"

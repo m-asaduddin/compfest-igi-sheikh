@@ -56,7 +56,7 @@ var _item_interaction = {
 			"message": "Aneh rasanya jika menggunakan gunting tanpa alasan"
 		}
 	},
-	"dog_leash": {
+	"dog": {
 		"police-line": {
 			"success": false,
 			"message": "Anjing ini tidak perlu ditambah garis polisi"
@@ -182,6 +182,8 @@ func trigger_ending_cutscene(outcome_name: String) -> void:
 	print("GAME OVER OUTCOME TRIGGERED: ", outcome_name)
 	# route_times outputs: "death_explosion", "success", "enprisonment_1", etc.
 	# Call your Scene Manager transition framework here!
+	if outcome_name != "success":
+		SceneManager.transition_to_scene("res://scenes/ui/game_over.tscn")
 
 func resolve(object_id: String, item_id: String) -> Dictionary:
 	var object_map = _item_interaction.get(object_id, {})
@@ -189,18 +191,5 @@ func resolve(object_id: String, item_id: String) -> Dictionary:
 		return object_map[item_id]
 	return {
 		"success": false,
-		"message": "Tidak ada kombinasi yang cocok. object id: " + object_id + " item id:" + item_id,
+		"message": "Tidak bisa menggunakan " + item_id + " di sini",
 	}
-
-func change_world_state(object_id: String):
-	match object_id:
-		"street" :
-			player_affected_world_state["street_blockaded"] = true
-			#var blokade_place = get_node("MainStreet/Blokade_place")
-			#var texture = load("res://assets/sprites/levels/police-line-set.png")
-			#var blokade = Sprite2D.new()
-			#blokade.texture = texture
-			#blokade.position.x = blokade_place
-		"dog_leash":
-			player_affected_world_state["dog_unleashed"] = true
-	SceneManager.toggle_inventory()

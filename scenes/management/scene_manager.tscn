@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://4g1r8c4y4ijp" path="res://scripts/nodes/scene_manager.gd" id="1_xyasa"]
 [ext_resource type="PackedScene" uid="uid://b8gb3qqjtnm1s" path="res://scenes/ui/inventory.tscn" id="2_p4645"]
+[ext_resource type="PackedScene" uid="uid://bmc4ntfxup44q" path="res://scenes/ui/dialog_box.tscn" id="3_r7uh2"]
 
 [sub_resource type="Animation" id="Animation_p4645"]
 resource_name = "LoadIn"
@@ -72,4 +73,7 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Inventory" parent="." unique_id=1171000229 instance=ExtResource("2_p4645")]
+visible = false
+
+[node name="DialogBox" parent="." unique_id=1922864778 instance=ExtResource("3_r7uh2")]
 visible = false
