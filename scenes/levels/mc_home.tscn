@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_ja3vq"]
 [ext_resource type="Texture2D" uid="uid://djpudoyegtt7b" path="res://assets/sprites/levels/Background-Rumah-MC.png" id="2_5u1q3"]
+[ext_resource type="Resource" uid="uid://d03syjq4bpyhx" path="res://items/gunting.tres" id="4_ssilh"]
 [ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="5_ssilh"]
-[ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="6_oyc8w"]
 [ext_resource type="Script" uid="uid://dvshf0k8ascox" path="res://scripts/save-sys/saveable-item.gd" id="7_sjoxj"]
+[ext_resource type="Texture2D" uid="uid://dkmrw5q44khbe" path="res://assets/sprites/interactables/tempat-pensil.png" id="8_oyc8w"]
 [ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="10_8gcvi"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="11_d7d68"]
 
@@ -12,6 +13,9 @@
 size = Vector2(184, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyc8w"]
+size = Vector2(61, 199.25)
 
 [node name="MCHome" type="Node2D" unique_id=1840508291]
 script = ExtResource("1_ja3vq")
@@ -51,14 +55,31 @@ scale = Vector2(6.84, 1)
 shape = SubResource("RectangleShape2D_5811a")
 
 [node name="Blokade_item" parent="." unique_id=372452859 instance=ExtResource("5_ssilh")]
-position = Vector2(1422, 304)
-item_name = "Gunting"
-texture = ExtResource("6_oyc8w")
+position = Vector2(1338, 334)
+data = ExtResource("4_ssilh")
+
+[node name="CollisionShape2D" parent="Blokade_item" index="0" unique_id=638263940]
+position = Vector2(-4.5, -65.625)
+shape = SubResource("RectangleShape2D_oyc8w")
+
+[node name="Label" parent="Blokade_item" index="1" unique_id=224947407]
+visible = false
+offset_left = -98.0
+offset_right = 94.0
+offset_bottom = -93.0
+
+[node name="Sprite2D" parent="Blokade_item" index="2" unique_id=1031077818]
+position = Vector2(8, -109.5)
+rotation = 0.35329375
 
 [node name="SaveableItem" type="Node" parent="Blokade_item" unique_id=270101826]
 script = ExtResource("7_sjoxj")
 unique_id = "gunting"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=346452159]
+position = Vector2(1333, 256)
+texture = ExtResource("8_oyc8w")
 
 [node name="Player" parent="." unique_id=1102112952 instance=ExtResource("11_d7d68")]
 position = Vector2(1695.0001, 424)
@@ -69,10 +90,12 @@ camera_limit_top = -1000
 player_face = "left"
 
 [node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
-position = Vector2(1673, 473)
+position = Vector2(1747, 478)
 
 [node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("10_8gcvi")]
-position = Vector2(1852, 486)
+position = Vector2(1980, 487)
 target_scene = "uid://bhqajjc2kh436"
 target_scene_name = "luar"
 spawn_point_id = "SpawnFromHome"
+
+[editable path="Blokade_item"]

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_lr7n6"]
 [ext_resource type="Texture2D" uid="uid://d0yimponcjj8r" path="res://assets/sprites/levels/Background-Jalan-Utama-1.png" id="2_omobp"]
 [ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="2_ycx43"]
-[ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="3_omobp"]
 [ext_resource type="Texture2D" uid="uid://dgkpmrr2rot80" path="res://assets/sprites/levels/Background-Jalan-Utama-2.png" id="3_wgegj"]
 [ext_resource type="Texture2D" uid="uid://bsc3cunr82fh4" path="res://assets/sprites/levels/Background-Jalan-Utama-3.png" id="4_1tp1v"]
 [ext_resource type="Script" uid="uid://dvshf0k8ascox" path="res://scripts/save-sys/saveable-item.gd" id="4_ctqee"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ynfp0aobd4lv" path="res://assets/sprites/levels/Background-Jalan-Utama-4.png" id="5_m3iaa"]
 [ext_resource type="Texture2D" uid="uid://dqtllofykud1x" path="res://assets/sprites/levels/Background-Jalan-Utama-5.png" id="6_5lib3"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="6_wgegj"]
+[ext_resource type="Resource" uid="uid://t63t354878ej" path="res://items/police-line.tres" id="8_1tp1v"]
 [ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="12_1tp1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
@@ -97,12 +97,10 @@ position = Vector2(2324, 552)
 
 [node name="Blokade_item" parent="." unique_id=372452859 instance=ExtResource("2_ycx43")]
 position = Vector2(18066, 569)
-item_name = "Blokade"
-texture = ExtResource("3_omobp")
+data = ExtResource("8_1tp1v")
 
 [node name="SaveableItem" type="Node" parent="Blokade_item" unique_id=65997085]
 script = ExtResource("4_ctqee")
-unique_id = "blokade"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
 
 [node name="Player" parent="." unique_id=1102112952 instance=ExtResource("6_wgegj")]
@@ -148,7 +146,7 @@ target_scene_name = "Gang Melati"
 spawn_point_id = "SpawnRight"
 
 [node name="Blokade_place" parent="." unique_id=1877616496 instance=ExtResource("12_1tp1v")]
-position = Vector2(14857, 576)
+position = Vector2(14931, 576)
 object_id = "street"
 
 [node name="Dog" parent="." unique_id=1213165164 instance=ExtResource("12_1tp1v")]

@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dd5sj700pqiuy" path="res://assets/sprites/player/Idle_kiri.png" id="3_6eyoc"]
 [ext_resource type="Texture2D" uid="uid://cpq417vdufwrx" path="res://assets/sprites/player/Idle_kanan.png" id="4_eojnx"]
 [ext_resource type="Texture2D" uid="uid://cvpflsdsr1jo5" path="res://assets/sprites/player/Run_kiri.png" id="5_qgnko"]
+[ext_resource type="Texture2D" uid="uid://bk2tev6sqs7aw" path="res://assets/sprites/mc/ride/bike1.png" id="6_2l4js"]
 [ext_resource type="Texture2D" uid="uid://bxptopx5sko1m" path="res://assets/sprites/player/Run_kanan.png" id="6_7vyk4"]
+[ext_resource type="Texture2D" uid="uid://768n84w6wtcg" path="res://assets/sprites/mc/ride/bike2.png" id="7_jk2m4"]
+[ext_resource type="Texture2D" uid="uid://bpms80u08tfsu" path="res://assets/sprites/mc/ride/bike3.png" id="8_xhtjm"]
+[ext_resource type="Texture2D" uid="uid://bd484kvrkui65" path="res://assets/sprites/mc/ride/bike4.png" id="9_k4v7y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
 size = Vector2(78, 98.5)
@@ -769,6 +773,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_2l4js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jk2m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xhtjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_k4v7y")
+}],
+"loop": 1,
+"name": &"ride_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6eyoc")
 }, {
 "duration": 1.0,
@@ -861,10 +882,10 @@ shape = SubResource("RectangleShape2D_5811a")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1635186547]
 z_index = 2
-position = Vector2(12, -29.25)
+position = Vector2(-9.536743e-07, -30.25)
 scale = Vector2(0.37923425, 0.37923422)
 sprite_frames = SubResource("SpriteFrames_gpktr")
-animation = &"idle_right"
+animation = &"ride_left"
 offset = Vector2(0, -10)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1599820221]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="3_xkjoh"]
 [ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="4_fge3m"]
 [ext_resource type="PackedScene" uid="uid://dpv7pyl7ejj6" path="res://scenes/objects/item.tscn" id="5_fge3m"]
-[ext_resource type="Texture2D" uid="uid://xwpvvgesd5fi" path="res://icon.svg" id="6_a07i7"]
+[ext_resource type="Resource" uid="uid://klg3gtyq5n81" path="res://items/tang.tres" id="6_fge3m"]
 [ext_resource type="Script" uid="uid://dvshf0k8ascox" path="res://scripts/save-sys/saveable-item.gd" id="7_b6vpw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
@@ -62,15 +62,14 @@ player_face = "left"
 position = Vector2(442, 473)
 
 [node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("4_fge3m")]
-position = Vector2(123, 482)
+position = Vector2(119, 278)
 target_scene = "uid://bhqajjc2kh436"
 target_scene_name = "Jalan Utama"
 spawn_point_id = "SpawnFromWarehouse"
 
 [node name="Tang_item" parent="." unique_id=372452859 instance=ExtResource("5_fge3m")]
 position = Vector2(1369, 306)
-item_name = "Tang"
-texture = ExtResource("6_a07i7")
+data = ExtResource("6_fge3m")
 
 [node name="SaveableItem" type="Node" parent="Tang_item" unique_id=19339860]
 script = ExtResource("7_b6vpw")

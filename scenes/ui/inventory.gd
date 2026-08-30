@@ -13,16 +13,18 @@ func _on_visibility_changed() -> void:
 	if visible:
 		refresh_inventory(GameState.inventories)
 
-func refresh_inventory(items: Array) -> void:
+func refresh_inventory(items: Array[ItemData]) -> void:
 	item_list.clear()
-	for item_id in items:
-		item_list.add_item(str(item_id))
+	for item in items:
+		var idx = item_list.add_item(item.name)
+		if item.texture:
+			item_list.set_item_icon(idx, item.texture)
 
 func _on_item_list_item_activated(index: int) -> void:
 	if GameState == null:
 		return
 	GameState.select_item(index)
-	
+
 func _input(event: InputEvent) -> void:
 	if event.is_action("close"):
 		GameState.is_inventory_open = false

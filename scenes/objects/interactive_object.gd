@@ -23,10 +23,10 @@ func interact() -> void:
 		SceneManager.toggle_inventory()
 		return
 
-func try_combine_with_item(item_id: String) -> void:
-	var result = StoryOrchestrator.resolve(object_id, item_id)
+func try_combine_with_item(item_data: ItemData) -> void:
+	var result = StoryOrchestrator.resolve(object_id, item_data.id)
 	if result.get("success", false):
-		GameState.use_item(item_id)
+		GameState.use_item(item_data.id)
 		apply_result(result)
 		StoryOrchestrator.change_world_state(object_id)
 		queue_free()

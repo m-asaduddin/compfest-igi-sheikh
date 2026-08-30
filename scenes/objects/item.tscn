@@ -6,7 +6,7 @@
 size = Vector2(200.5, 162.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_keydj"]
-font_size = 20
+font_size = 24
 outline_size = 2
 outline_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 
@@ -20,12 +20,11 @@ position = Vector2(0, -84)
 shape = SubResource("RectangleShape2D_ek5ad")
 
 [node name="Label" type="Label" parent="." unique_id=224947407]
-visible = false
 z_index = 15
 offset_left = -97.0
-offset_top = -121.0
+offset_top = -304.0
 offset_right = 95.0
-offset_bottom = -98.0
+offset_bottom = -270.0
 label_settings = SubResource("LabelSettings_keydj")
 horizontal_alignment = 1
 vertical_alignment = 1

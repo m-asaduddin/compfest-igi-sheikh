@@ -43,7 +43,7 @@ var time_values = {
 
 var _item_interaction = {
 	"street": {
-		"blokade": {
+		"police-line": {
 			"success": true,
 			"message": "Jalan Utama Berhasil di Tutup"
 		},
@@ -57,9 +57,9 @@ var _item_interaction = {
 		}
 	},
 	"dog_leash": {
-		"blokade": {
+		"police-line": {
 			"success": false,
-			"message": "Anjing ini tidak perlu ditambah garis peringatan"
+			"message": "Anjing ini tidak perlu ditambah garis polisi"
 		},
 		"tang": {
 			"success": false,
@@ -71,9 +71,9 @@ var _item_interaction = {
 		}
 	},
 	"bomb_wire": {
-		"blokade": {
+		"police-line": {
 			"success": false,
-			"message": "Tidak perlu garis peringatan. BOMB INI AKAN MELEDAK!"
+			"message": "Tidak perlu garis polisi. BOMB INI AKAN MELEDAK!"
 		},
 		"tang": {
 			"success": true,
@@ -196,5 +196,11 @@ func change_world_state(object_id: String):
 	match object_id:
 		"street" :
 			player_affected_world_state["street_blockaded"] = true
+			#var blokade_place = get_node("MainStreet/Blokade_place")
+			#var texture = load("res://assets/sprites/levels/police-line-set.png")
+			#var blokade = Sprite2D.new()
+			#blokade.texture = texture
+			#blokade.position.x = blokade_place
 		"dog_leash":
 			player_affected_world_state["dog_unleashed"] = true
+	SceneManager.toggle_inventory()
