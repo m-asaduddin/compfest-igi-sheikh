@@ -68,3 +68,6 @@ func _on_dialog_dismissed() -> void:
 	
 func show_box_overlay() -> void:
 	$PaketOverlay.visible = true
+
+func show_computer_overlay() -> void:
+	$ScreenOverlay.visible = true

@@ -9,13 +9,14 @@
 [ext_resource type="Script" uid="uid://dvshf0k8ascox" path="res://scripts/save-sys/saveable-item.gd" id="7_b6vpw"]
 [ext_resource type="PackedScene" uid="uid://bn31sxfvvttrs" path="res://scenes/objects/paket.tscn" id="8_a07i7"]
 [ext_resource type="Texture2D" uid="uid://du758wn0essq7" path="res://assets/sprites/levels/perkakas.png" id="9_b6vpw"]
+[ext_resource type="PackedScene" uid="uid://dt48lf4m6ir37" path="res://scenes/objects/computer_screen.tscn" id="10_4ybyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
 size = Vector2(201.06595, 26.169617)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
 
-[node name="LevelTest" type="Node2D" unique_id=1840508291]
+[node name="Warehouse" type="Node2D" unique_id=1840508291]
 script = ExtResource("1_m5vm6")
 
 [node name="Backgrounds" type="Node2D" parent="." unique_id=1318409331]
@@ -95,4 +96,8 @@ position = Vector2(2556, 403)
 scale = Vector2(0.29133347, 0.29133347)
 texture = ExtResource("9_b6vpw")
 
+[node name="ComputerScreen" parent="." unique_id=1493288129 instance=ExtResource("10_4ybyf")]
+position = Vector2(1565, 283)
+
 [editable path="Tang_item"]
+[editable path="ComputerScreen"]

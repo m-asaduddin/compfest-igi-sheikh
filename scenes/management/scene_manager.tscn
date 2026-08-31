@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b8gb3qqjtnm1s" path="res://scenes/ui/inventory.tscn" id="2_p4645"]
 [ext_resource type="PackedScene" uid="uid://bmc4ntfxup44q" path="res://scenes/ui/dialog_box.tscn" id="3_r7uh2"]
 [ext_resource type="PackedScene" uid="uid://s5a6y8370bli" path="res://scenes/objects/paket_overlay.tscn" id="4_p7vel"]
+[ext_resource type="PackedScene" uid="uid://bkvih16eil0qw" path="res://scenes/objects/screen_overlay.tscn" id="5_j5r8e"]
 
 [sub_resource type="Animation" id="Animation_p4645"]
 resource_name = "LoadIn"
@@ -80,4 +81,7 @@ visible = false
 visible = false
 
 [node name="PaketOverlay" parent="." unique_id=1148496403 instance=ExtResource("4_p7vel")]
+visible = false
+
+[node name="ScreenOverlay" parent="." unique_id=2117484933 instance=ExtResource("5_j5r8e")]
 visible = false
