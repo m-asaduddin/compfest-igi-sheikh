@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name NPC
 
-@export var run_speed: float = 250.0
+@export var run_speed: float = 200.0
 
 var start_pos: Vector2
 var target_pos: Vector2
@@ -19,7 +19,8 @@ var face_direction: String = "right"
 	"antar_paket_1": "res://scenes/levels/main_street.tscn",
 	"paket_proceeding": "res://scenes/levels/main_street.tscn",
 	"antar_paket_x": "res://scenes/levels/main_street.tscn",
-	"antar_paket_start": "res://scenes/levels/gang_melati.tscn",
+	"antar_paket_start": "res://scenes/levels/main_street.tscn",
+	"antar_paket_2": "res://scenes/levels/gang_melati.tscn",
 	"antar_paket_proceeding": "res://scenes/levels/main_street.tscn",
 }
 
@@ -33,6 +34,7 @@ var face_direction: String = "right"
 	"paket_proceeding": "ride",
 	"antar_paket_x": "ride",
 	"antar_paket_start": "ride",
+	"antar_paket_2": "ride",
 	"antar_paket_proceeding": "ride",
 }
 
@@ -77,14 +79,14 @@ func _process(_delta: float) -> void:
 			if sprite.sprite_frames.has_animation(anim_name):
 				if _reach_anim_reverse:
 					sprite.play_backwards(anim_name)
-				else :
+				else:
 					sprite.play(anim_name)
 				sprite.flip_h = false
 			elif sprite.sprite_frames.has_animation(anim_prefix + "_right"):
 				# Fallback if only right animation exists (like ride_right) and flip horizontally
-				if _reach_anim_reverse :
+				if _reach_anim_reverse:
 					sprite.play_backwards(anim_prefix + "_right")
-				else :
+				else:
 					sprite.play(anim_prefix + "_right")
 				sprite.flip_h = (face_direction == "left")
 			else:
@@ -165,19 +167,22 @@ func _get_action_nodes(action_name: String) -> Dictionary:
 		"ambil_paket":
 			start_node = get_parent().find_child("ambil_paket", true, false)
 			target_node = get_parent().find_child("antar_paket_1", true, false)
-		"antar_paket_1": 
+		"antar_paket_1":
 			start_node = get_parent().find_child("SpawnFromWarehouse", true, false)
 			target_node = get_parent().find_child("home_1", true, false)
 		"paket_proceeding":
 			start_node = get_parent().find_child("home_1", true, false)
 			target_node = get_parent().find_child("paket_proceeding", true, false)
-		"antar_paket_x": 
+		"antar_paket_x":
 			start_node = get_parent().find_child("paket_proceeding", true, false)
 			target_node = get_parent().find_child("antar_paket_x", true, false)
-		"antar_paket_start": 
+		"antar_paket_start":
+			start_node = get_parent().find_child("paket_proceeding", true, false)
+			target_node = get_parent().find_child("portal_gang_2_start", true, false)
+		"antar_paket_2":
 			start_node = get_parent().find_child("SpawnLeft", true, false)
 			target_node = get_parent().find_child("antar_paket_start", true, false)
-		"antar_paket_proceeding": 
+		"antar_paket_proceeding":
 			start_node = get_parent().find_child("SpawnFromGang2End", true, false)
 			target_node = get_parent().find_child("antar_paket_x", true, false)
 	return {"start": start_node, "target": target_node}

@@ -7,6 +7,8 @@ var scene_entrance_spot: String = ""
 var time: int = 0
 var interaction_target: Node = null
 var is_inventory_open: bool = false
+var bomb_diffused: bool = false
+var diffuse_success: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

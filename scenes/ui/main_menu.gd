@@ -1,7 +1,7 @@
 extends Control
-@onready var newgame_btn : Button = $VBoxContainer/NewGame
-@onready var loadgame_btn : Button = $VBoxContainer/Load
-@onready var credits_btn : Button = $VBoxContainer/Credits
+@onready var newgame_btn : TextureButton = $VBoxContainer/NewGame
+@onready var loadgame_btn : TextureButton = $VBoxContainer/Load
+@onready var credits_btn : TextureButton = $VBoxContainer/Credits
 
 @export_file("*.tscn") var first_scene : String
 
@@ -19,6 +19,11 @@ func new_game_pressed():
 	GameState.inventories.clear()
 	
 	SceneManager.transition_to_scene(first_scene)
+	await SceneManager.show_opening()
+	
+	StoryOrchestrator.is_active = true
+	if StoryOrchestrator.is_active and not StoryOrchestrator.npc_is_travelling and StoryOrchestrator.get_current_action() != "":
+		StoryOrchestrator.start_npc_travel()
 	
 func continue_pressed():
 	if FileAccess.file_exists("user://game_save.json"):

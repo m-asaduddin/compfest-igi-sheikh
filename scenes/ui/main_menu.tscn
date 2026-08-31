@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://x704i8xgfhbt"]
 
 [ext_resource type="Script" uid="uid://bva70rpx84v1q" path="res://scenes/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="Texture2D" uid="uid://ckjs3wnugocwd" path="res://assets/sprites/ui/main_menu/bg_main_menu.png" id="2_x2yvf"]
+[ext_resource type="Texture2D" uid="uid://dawik1xtkmmif" path="res://assets/sprites/ui/main_menu/new_game.png" id="3_uhagc"]
+[ext_resource type="Texture2D" uid="uid://bjis406ax0c7a" path="res://assets/sprites/ui/main_menu/load_game.png" id="4_btxxm"]
+[ext_resource type="Texture2D" uid="uid://chsiodq2tjgd0" path="res://assets/sprites/ui/main_menu/credit.png" id="5_wb0q5"]
+[ext_resource type="Texture2D" uid="uid://dhjrt0myewgmv" path="res://assets/sprites/ui/main_menu/title.png" id="6_uhagc"]
 
 [node name="MainMenu" type="Control" unique_id=844819680]
 layout_mode = 3
@@ -12,23 +17,49 @@ grow_vertical = 2
 script = ExtResource("1_sl1te")
 first_scene = "uid://d3yq6y4k8dl56"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1941120488]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=403545536]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_x2yvf")
 
-[node name="NewGame" type="Button" parent="VBoxContainer" unique_id=259617653]
-layout_mode = 2
-text = "New Game
-"
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1941120488]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.053000003
+anchor_top = 0.319
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.15999603
+offset_top = 0.31999207
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="Load" type="Button" parent="VBoxContainer" unique_id=368608146]
+[node name="NewGame" type="TextureButton" parent="VBoxContainer" unique_id=1028932388]
 layout_mode = 2
-text = "Load"
+texture_normal = ExtResource("3_uhagc")
 
-[node name="Credits" type="Button" parent="VBoxContainer" unique_id=1724887565]
+[node name="Load" type="TextureButton" parent="VBoxContainer" unique_id=773248561]
 layout_mode = 2
-text = "Credit"
+texture_normal = ExtResource("4_btxxm")
+
+[node name="Credits" type="TextureButton" parent="VBoxContainer" unique_id=456197937]
+layout_mode = 2
+texture_normal = ExtResource("5_wb0q5")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1945341313]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45100003
+anchor_top = 0.21000001
+anchor_right = 0.45100003
+anchor_bottom = 0.21000001
+offset_left = -374.28003
+offset_top = -73.20001
+offset_right = 373.84497
+offset_bottom = 73.79999
+texture = ExtResource("6_uhagc")

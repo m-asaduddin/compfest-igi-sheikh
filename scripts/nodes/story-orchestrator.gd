@@ -13,21 +13,83 @@ var npc_route_actions = {
 	"paket_a": ["ambil_paket", "antar_paket_1", "paket_proceeding"],
 	#jalan x: pas menuju ke rumah 2
 	"jalan_x": ["antar_paket_x"],
-	"jalan_gng": ["antar_paket_start", "antar_paket_proceeding"],
+	"jalan_gng": ["antar_paket_start", "antar_paket_2", "antar_paket_proceeding"],
 	
 	"paket_b": ["ambil_paket", "antar_paket_1", "paket_proceeding"],
 }
 
 var time_values = {
-	"mc_house": 0.14, "mc_gudang": 0.12, "base_proceed": 0.15,
-	"ambil_paket": 0.15, "antar_paket_1": 0.05, "paket_proceeding": 0.1,
-	"antar_paket_x": 0.01,
-	"antar_paket_start": 0.05, "antar_paket_proceeding": 0.2,
+	# Formula: time_value = run_speed(200) / pixel_distance
+	# mc_home: NPCStartSpot(122) -> Portal(1947) = 1825px
+	"mc_house": 0.1096,
+	# main_street: mc_home door(368) -> portal_warehouse(3660) = 3292px
+	"mc_gudang": 0.0607,
+	# warehouse: antar_paket_1(17) -> ambil_paket(2111) = 2094px
+	"base_proceed": 0.0955,
+	# warehouse: ambil_paket(2111) -> antar_paket_1(17) = 2094px
+	"ambil_paket": 0.0955,
+	# main_street: SpawnFromWarehouse(3780) -> home_1(11593) = 7813px
+	"antar_paket_1": 0.0256,
+	# main_street: home_1(11593) -> paket_proceeding(11887) = 294px
+	"paket_proceeding": 0.680,
+	# main_street: paket_proceeding(11887) -> antar_paket_x(27631) = 15744px
+	"antar_paket_x": 0.0127,
+	# main_street: paket_proceeding(11887) -> portal_gang_2_start(14679) = 2792px
+	"antar_paket_start": 0.0716,
+	# gang_melati: SpawnLeft(310) -> antar_paket_start(5148) = 4838px
+	"antar_paket_2": 0.0413,
+	# main_street: SpawnFromGang2End(28032) -> antar_paket_x(27631) = 401px
+	"antar_paket_proceeding": 0.499,
+}
+
+var _item_interaction = {
+	"street": {
+		"police-line": {
+			"success": true,
+			"message": "Jalan Utama Berhasil di Tutup"
+		},
+		"tang": {
+			"success": false,
+			"message": "Tidak dapat mengguakan Tang di sini"
+		},
+		"gunting": {
+			"success": false,
+			"message": "Aneh rasanya jika menggunakan gunting tanpa alasan"
+		}
+	},
+	"dog": {
+		"police-line": {
+			"success": false,
+			"message": "Anjing ini tidak perlu ditambah garis polisi"
+		},
+		"tang": {
+			"success": false,
+			"message": "Tidak bisa menggunakan tang, perlu alat pemotong yg lebih tajam"
+		},
+		"gunting": {
+			"success": true,
+			"message": "Tali Anjing berhasil di potong"
+		}
+	},
+	"bomb_wire": {
+		"police-line": {
+			"success": false,
+			"message": "Tidak perlu garis polisi. BOMB INI AKAN MELEDAK!"
+		},
+		"tang": {
+			"success": true,
+			"message": ""
+		},
+		"gunting": {
+			"success": false,
+			"message": "Butuh alat yang lebih kuat untuk memotong kabel ini"
+		}
+	}
 }
 
 var current_branch: String = "base"
 var action_index: int = 0
-var is_active: bool = true
+var is_active: bool = false
 
 var npc_progress: float = 0.0 # 0.0 (awal jalur) sampai 1.0 (sampai tujuan)
 var npc_is_travelling: bool = false
@@ -83,8 +145,19 @@ func resolve_action_completion(completed_action_name: String) -> void:
 func evaluate_next_branch() -> void:
 	if current_branch == "base":
 		switch_to_branch("paket_b" if player_affected_world_state["paket_swapped"] else "paket_a")
+	elif current_branch == "paket_a" or current_branch == "paket_b":
+		switch_to_branch("jalan_gng" if player_affected_world_state["street_blockaded"] else "jalan_x")
 
 func switch_to_branch(new_branch: String) -> void:
 	current_branch = new_branch
 	action_index = 0
 	print("Berpindah ke branch: ", current_branch)
+
+func resolve(object_id: String, item_id: String) -> Dictionary:
+	var object_map = _item_interaction.get(object_id, {})
+	if object_map.has(item_id):
+		return object_map[item_id]
+	return {
+		"success": false,
+		"message": "Tidak bisa menggunakan " + item_id + " di sini",
+	}

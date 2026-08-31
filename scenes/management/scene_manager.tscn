@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bmc4ntfxup44q" path="res://scenes/ui/dialog_box.tscn" id="3_r7uh2"]
 [ext_resource type="PackedScene" uid="uid://s5a6y8370bli" path="res://scenes/objects/paket_overlay.tscn" id="4_p7vel"]
 [ext_resource type="PackedScene" uid="uid://bkvih16eil0qw" path="res://scenes/objects/screen_overlay.tscn" id="5_j5r8e"]
+[ext_resource type="PackedScene" uid="uid://syxiuh3rotnw" path="res://scenes/objects/bomb_overlay.tscn" id="6_bomb"]
+[ext_resource type="VideoStream" uid="uid://cb3r5sqjwxld2" path="res://assets/video/cut-scene-opening.ogv" id="7_yetur"]
 
 [sub_resource type="Animation" id="Animation_p4645"]
 resource_name = "LoadIn"
@@ -85,3 +87,36 @@ visible = false
 
 [node name="ScreenOverlay" parent="." unique_id=2117484933 instance=ExtResource("5_j5r8e")]
 visible = false
+
+[node name="BombOverlay" parent="." unique_id=158496403 instance=ExtResource("6_bomb")]
+visible = false
+
+[node name="BombTimer" type="Timer" parent="." unique_id=384729130]
+wait_time = 300.0
+one_shot = true
+
+[node name="Opening_cutscene" type="VideoStreamPlayer" parent="." unique_id=54138579]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.9999962
+offset_top = 1.9999981
+offset_right = 638.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.66989475, 0.66989475)
+stream = ExtResource("7_yetur")
+
+[node name="Ending_cutscene" type="VideoStreamPlayer" parent="." unique_id=2114800687]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.9999962
+offset_top = 2.999998
+offset_right = 638.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.66989475, 0.66989475)
+stream = ExtResource("7_yetur")
