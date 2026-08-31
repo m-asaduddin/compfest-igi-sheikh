@@ -159,3 +159,14 @@ position = Vector2(28196, 579)
 target_scene = "uid://djickv5ovobka"
 target_scene_name = "Gang Melati"
 spawn_point_id = "SpawnRight"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1044883685]
+
+[node name="home_1" type="Marker2D" parent="Node2D" unique_id=167278621]
+position = Vector2(11593, 575)
+
+[node name="paket_proceeding" type="Marker2D" parent="Node2D" unique_id=1072889602]
+position = Vector2(11887, 575)
+
+[node name="antar_paket_x" type="Marker2D" parent="Node2D" unique_id=645829624]
+position = Vector2(27631, 575)

@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bn31sxfvvttrs" path="res://scenes/objects/paket.tscn" id="8_a07i7"]
 [ext_resource type="Texture2D" uid="uid://du758wn0essq7" path="res://assets/sprites/levels/perkakas.png" id="9_b6vpw"]
 [ext_resource type="PackedScene" uid="uid://dt48lf4m6ir37" path="res://scenes/objects/computer_screen.tscn" id="10_4ybyf"]
+[ext_resource type="PackedScene" uid="uid://bwnk5oe6nv734" path="res://scenes/characters/npc.tscn" id="11_npc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
 size = Vector2(201.06595, 26.169617)
@@ -53,19 +54,11 @@ scale = Vector2(4.4526787, 3.5051315)
 scale = Vector2(6.84, 1)
 shape = SubResource("RectangleShape2D_5811a")
 
-[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("3_xkjoh")]
-position = Vector2(826, 402.00003)
-scale = Vector2(2, 2)
-camera_limit_left = -20
-camera_limit_right = 2685
-camera_limit_top = -1000
-player_face = "left"
-
 [node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
 position = Vector2(442, 473)
 
 [node name="Portal" parent="." unique_id=1062156617 instance=ExtResource("4_fge3m")]
-position = Vector2(110, 297)
+position = Vector2(89, 483)
 target_scene = "uid://bhqajjc2kh436"
 target_scene_name = "Jalan Utama"
 spawn_point_id = "SpawnFromWarehouse"
@@ -106,6 +99,18 @@ position = Vector2(2111, 448)
 
 [node name="antar_paket_1" type="Marker2D" parent="Waypoints" unique_id=1648657638]
 position = Vector2(17, 448)
+
+[node name="NPC" parent="." unique_id=1102112952 instance=ExtResource("11_npc")]
+position = Vector2(182, 401)
+scale = Vector2(1.9703846, 1.9703846)
+
+[node name="Player" parent="." unique_id=1736318387 instance=ExtResource("3_xkjoh")]
+position = Vector2(826, 402.00003)
+scale = Vector2(2, 2)
+camera_limit_left = -20
+camera_limit_right = 2685
+camera_limit_top = -1000
+player_face = "left"
 
 [editable path="Tang_item"]
 [editable path="ComputerScreen"]

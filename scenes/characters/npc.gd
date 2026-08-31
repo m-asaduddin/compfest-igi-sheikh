@@ -3,7 +3,8 @@ class_name NPC
 
 @export var run_speed: float = 250.0
 
-var target_position: Vector2 = Vector2.ZERO
+var start_pos: Vector2
+var target_pos: Vector2
 var is_moving: bool = false
 var face_direction: String = "right"
 
@@ -13,82 +14,218 @@ var face_direction: String = "right"
 @export var scene_schedule: Dictionary = {
 	"mc_house": "res://scenes/levels/mc_home.tscn",
 	"mc_gudang": "res://scenes/levels/main_street.tscn",
-	"base_proceed": "res://scenes/levels/warehouse.tscn"
+	"base_proceed": "res://scenes/levels/warehouse.tscn",
+	"ambil_paket": "res://scenes/levels/warehouse.tscn",
+	"antar_paket_1": "res://scenes/levels/main_street.tscn",
+	"paket_proceeding": "res://scenes/levels/main_street.tscn",
+	"antar_paket_x": "res://scenes/levels/main_street.tscn",
+	"antar_paket_start": "res://scenes/levels/gang_melati.tscn",
+	"antar_paket_proceeding": "res://scenes/levels/main_street.tscn",
 }
+
+# Mapping from action name to movement animation prefix
+@export var action_animations: Dictionary = {
+	"mc_house": "run",
+	"mc_gudang": "run",
+	"base_proceed": "run",
+	"ambil_paket": "run",
+	"antar_paket_1": "ride",
+	"paket_proceeding": "ride",
+	"antar_paket_x": "ride",
+	"antar_paket_start": "ride",
+	"antar_paket_proceeding": "ride",
+}
+
+# Mapping from action to reaching/finishing animation and duration (in seconds)
+@export var reach_actions: Dictionary = {
+	"base_proceed": {"animation": "grab", "duration": 1.5, "reversed": false},
+	"paket_proceeding": {"animation": "grab", "duration": 1.5, "reversed": true},
+}
+
+var _initialized_action: String = ""
+var _is_playing_reach_anim: bool = false
+var _reach_timer: float = 0.0
+var _reach_duration: float = 0.0
+var _reach_anim_prefix: String = ""
+var _reach_anim_reverse: bool = false
 
 func _ready() -> void:
 	add_to_group("NPC")
-	
-	# 1. Cek apakah NPC harus ada di scene aktif saat ini
-	if not _evaluate_presence():
-		return # Jika bukan di scene-nya, NPC dihapus (queue_free)
-		
-	# 2. Jalankan aksi cerita yang sedang berlangsung
-	_execute_story_action(StoryOrchestrator.get_current_action())
+	_update_presence_and_movement()
 
-func _evaluate_presence() -> bool:
+func _process(_delta: float) -> void:
+	_update_presence_and_movement()
+	
+	if sprite and sprite.has_method("play"):
+		var action = StoryOrchestrator.get_current_action()
+		var anim_prefix = action_animations.get(action, "run")
+		
+		# Handle Sepeda (bike) visibility if the animation is 'ride'
+		var sepeda = find_child("Sepeda", true, false)
+		if sepeda:
+			sepeda.visible = (anim_prefix == "ride")
+			
+		if _is_playing_reach_anim:
+			var anim_name = _reach_anim_prefix + "_" + face_direction
+			if sprite.sprite_frames.has_animation(anim_name):
+				sprite.play(anim_name)
+			else:
+				sprite.play("idle_" + face_direction)
+			sprite.flip_h = false
+		elif is_moving:
+			var anim_name = anim_prefix + "_" + face_direction
+			if sprite.sprite_frames.has_animation(anim_name):
+				if _reach_anim_reverse:
+					sprite.play_backwards(anim_name)
+				else :
+					sprite.play(anim_name)
+				sprite.flip_h = false
+			elif sprite.sprite_frames.has_animation(anim_prefix + "_right"):
+				# Fallback if only right animation exists (like ride_right) and flip horizontally
+				if _reach_anim_reverse :
+					sprite.play_backwards(anim_prefix + "_right")
+				else :
+					sprite.play(anim_prefix + "_right")
+				sprite.flip_h = (face_direction == "left")
+			else:
+				# General fallback to run
+				sprite.play("run_" + face_direction)
+				sprite.flip_h = false
+		else:
+			# Idle animation
+			sprite.play("idle_" + face_direction)
+			sprite.flip_h = false
+
+func _update_presence_and_movement() -> void:
 	var current_action = StoryOrchestrator.get_current_action()
 	var current_scene_file = get_tree().current_scene.scene_file_path
 	
+	var should_be_active = false
 	if scene_schedule.has(current_action):
 		var target_scene_for_step = scene_schedule[current_action]
-		# Jika scene aktif beda dengan scene tugas NPC, hapus instance NPC ini
-		if current_scene_file != target_scene_for_step:
-			queue_free()
-			return false
+		if current_scene_file == target_scene_for_step:
+			should_be_active = true
 			
-	return true
-
-func _physics_process(_delta: float) -> void:
-	if is_moving:
-		var dir_x = sign(target_position.x - global_position.x)
-		if dir_x > 0:
-			face_direction = "right"
-		elif dir_x < 0:
-			face_direction = "left"
-			
-		velocity.x = dir_x * run_speed
-		velocity.y = 0
-		
-		if sprite and sprite.has_method("play"):
-			sprite.play("run_" + face_direction)
-		
-		# Deteksi jika NPC sudah mencapai target portalnya
-		if abs(global_position.x - target_position.x) < 10.0:
-			velocity = Vector2.ZERO
+	if should_be_active:
+		if _initialized_action != current_action or not visible or not is_physics_processing():
+			visible = true
+			set_physics_process(true)
+			_initialized_action = current_action
+			_is_playing_reach_anim = false
+			_setup_background_position()
+	else:
+		if visible or is_physics_processing() or _initialized_action != "":
+			visible = false
 			is_moving = false
-			_on_target_reached()
-		else:
-			move_and_slide()
+			_is_playing_reach_anim = false
+			set_physics_process(false)
+			_initialized_action = ""
 
-func _process(_delta: float) -> void:
-	if not is_moving and sprite and sprite.has_method("play"):
-		sprite.play("idle_" + face_direction)
+func _setup_background_position() -> void:
+	var action = StoryOrchestrator.get_current_action()
+	var nodes = _get_action_nodes(action)
+	
+	var start_node = nodes["start"]
+	var target_node = nodes["target"]
+	
+	if start_node:
+		start_pos = start_node.global_position
+	else:
+		start_pos = global_position # fallback to initial scene position
+		
+	if target_node:
+		target_pos = target_node.global_position
+	else:
+		target_pos = global_position # fallback/no movement
+		
+	# Hitung posisi fisik NPC berdasarkan progress simulasi latar belakang!
+	var current_progress = StoryOrchestrator.npc_progress
+	global_position = start_pos.lerp(target_pos, current_progress)
+	
+	# Jika di latar belakang belum sampai, lanjutkan berjalan secara fisik
+	if current_progress < 1.0 and start_pos != target_pos:
+		run_to(target_pos)
+	else:
+		is_moving = false
 
-func _execute_story_action(action_name: String) -> void:
+func _get_action_nodes(action_name: String) -> Dictionary:
+	var start_node = null
+	var target_node = null
+	
 	match action_name:
 		"mc_house":
-			var portal_exit = get_parent().find_child("Portal", true, false)
-			if portal_exit:
-				run_to(portal_exit.global_position)
-
+			start_node = get_parent().find_child("NPCStartSpot", true, false)
+			target_node = get_parent().find_child("Portal", true, false)
 		"mc_gudang":
-			var portal_gudang = get_parent().find_child("portal_warehouse", true, false)
-			if portal_gudang:
-				run_to(portal_gudang.global_position)
+			start_node = get_parent().find_child("mc_home", true, false)
+			target_node = get_parent().find_child("portal_warehouse", true, false)
+		"base_proceed":
+			start_node = get_parent().find_child("antar_paket_1", true, false)
+			target_node = get_parent().find_child("ambil_paket", true, false)
+		"ambil_paket":
+			start_node = get_parent().find_child("ambil_paket", true, false)
+			target_node = get_parent().find_child("antar_paket_1", true, false)
+		"antar_paket_1": 
+			start_node = get_parent().find_child("SpawnFromWarehouse", true, false)
+			target_node = get_parent().find_child("home_1", true, false)
+		"paket_proceeding":
+			start_node = get_parent().find_child("home_1", true, false)
+			target_node = get_parent().find_child("paket_proceeding", true, false)
+		"antar_paket_x": 
+			start_node = get_parent().find_child("paket_proceeding", true, false)
+			target_node = get_parent().find_child("antar_paket_x", true, false)
+		"antar_paket_start": 
+			start_node = get_parent().find_child("SpawnLeft", true, false)
+			target_node = get_parent().find_child("antar_paket_start", true, false)
+		"antar_paket_proceeding": 
+			start_node = get_parent().find_child("SpawnFromGang2End", true, false)
+			target_node = get_parent().find_child("antar_paket_x", true, false)
+	return {"start": start_node, "target": target_node}
+
+func _physics_process(delta: float) -> void:
+	if _is_playing_reach_anim:
+		_reach_timer += delta
+		if _reach_timer >= _reach_duration:
+			_is_playing_reach_anim = false
+			StoryOrchestrator.npc_progress = 1.0
+			StoryOrchestrator.resolve_action_completion(StoryOrchestrator.get_current_action())
+		return
+
+	if is_moving:
+		var dir_x = sign(target_pos.x - global_position.x)
+		if dir_x == 0:
+			dir_x = 1
+			
+		velocity.x = dir_x * run_speed
+		velocity.y = 0.0
+		
+		if dir_x > 0:
+			face_direction = "right"
+		else:
+			face_direction = "left"
+			
+		move_and_slide()
+		
+		# Update progress ke StoryOrchestrator
+		var total_dist = abs(target_pos.x - start_pos.x)
+		if total_dist > 0.0:
+			var current_dist = abs(global_position.x - start_pos.x)
+			StoryOrchestrator.npc_progress = clamp(current_dist / total_dist, 0.0, 1.0)
+			
+		# Cek jika sampai
+		if abs(global_position.x - target_pos.x) < 15.0:
+			is_moving = false
+			var action = StoryOrchestrator.get_current_action()
+			if reach_actions.has(action):
+				_is_playing_reach_anim = true
+				_reach_timer = 0.0
+				_reach_duration = reach_actions[action]["duration"]
+				_reach_anim_prefix = reach_actions[action]["animation"]
+				_reach_anim_reverse = reach_actions[action]["reversed"]
+			else:
+				StoryOrchestrator.npc_progress = 1.0
+				StoryOrchestrator.resolve_action_completion(action)
 
 func run_to(destination: Vector2) -> void:
-	target_position = Vector2(destination.x, global_position.y)
+	target_pos = Vector2(destination.x, global_position.y)
 	is_moving = true
-
-# Dipanggil MURNI HANYA SAAT NPC sampai di portal tujuan
-func _on_target_reached() -> void:
-	var current_action = StoryOrchestrator.get_current_action()
-	
-	if current_action == "mc_house":
-		hide()
-		set_physics_process(false)
-		
-		# HANYA di sini state cerita dimajukan ke step berikutnya!
-		StoryOrchestrator.resolve_action_completion("mc_house")
-		queue_free()
