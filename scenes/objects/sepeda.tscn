@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cykykp7wiq3go"]
+
+[ext_resource type="Texture2D" uid="uid://cvjtkgquvsi5r" path="res://assets/sprites/mc/ride/bike.png" id="1_ytx41"]
+[ext_resource type="Texture2D" uid="uid://dyd1dhv5n2r1m" path="res://assets/sprites/interactables/paket.png" id="2_3kh7p"]
+
+[node name="Sepeda" type="Node2D" unique_id=2050197153]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=752061582]
+texture = ExtResource("1_ytx41")
+
+[node name="paket_1" type="Sprite2D" parent="." unique_id=244583052]
+z_index = 7
+position = Vector2(-111.99999, -35)
+scale = Vector2(0.1279812, 0.12798122)
+texture = ExtResource("2_3kh7p")
+
+[node name="paket_2" type="Sprite2D" parent="." unique_id=997427843]
+z_index = 7
+position = Vector2(-112, -66)
+scale = Vector2(0.12131437, 0.13275254)
+texture = ExtResource("2_3kh7p")

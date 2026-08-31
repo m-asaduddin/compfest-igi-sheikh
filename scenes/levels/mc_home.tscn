@@ -54,25 +54,24 @@ scale = Vector2(4.4526787, 3.5051315)
 scale = Vector2(6.84, 1)
 shape = SubResource("RectangleShape2D_5811a")
 
-[node name="Blokade_item" parent="." unique_id=372452859 instance=ExtResource("5_ssilh")]
+[node name="Gunting_item" parent="." unique_id=372452859 instance=ExtResource("5_ssilh")]
 position = Vector2(1338, 334)
 data = ExtResource("4_ssilh")
 
-[node name="CollisionShape2D" parent="Blokade_item" index="0" unique_id=638263940]
+[node name="CollisionShape2D" parent="Gunting_item" index="0" unique_id=638263940]
 position = Vector2(-4.5, -65.625)
 shape = SubResource("RectangleShape2D_oyc8w")
 
-[node name="Label" parent="Blokade_item" index="1" unique_id=224947407]
-visible = false
+[node name="Label" parent="Gunting_item" index="1" unique_id=224947407]
 offset_left = -98.0
 offset_right = 94.0
 offset_bottom = -93.0
 
-[node name="Sprite2D" parent="Blokade_item" index="2" unique_id=1031077818]
+[node name="Sprite2D" parent="Gunting_item" index="2" unique_id=1031077818]
 position = Vector2(8, -109.5)
 rotation = 0.35329375
 
-[node name="SaveableItem" type="Node" parent="Blokade_item" unique_id=270101826]
+[node name="SaveableItem" type="Node" parent="Gunting_item" unique_id=270101826]
 script = ExtResource("7_sjoxj")
 unique_id = "gunting"
 metadata/_custom_type_script = "uid://dvshf0k8ascox"
@@ -98,4 +97,4 @@ target_scene = "uid://bhqajjc2kh436"
 target_scene_name = "luar"
 spawn_point_id = "SpawnFromHome"
 
-[editable path="Blokade_item"]
+[editable path="Gunting_item"]

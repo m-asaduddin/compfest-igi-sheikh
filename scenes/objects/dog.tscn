@@ -121,4 +121,4 @@ remove_on_success = false
 position = Vector2(9.999996, -63)
 scale = Vector2(0.34, 0.34)
 sprite_frames = SubResource("SpriteFrames_5811a")
-animation = &"idle"
+animation = &"run"

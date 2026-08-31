@@ -14,7 +14,7 @@ func _ready() -> void:
 	if _has_id_in_inventory():
 		disappear()
 	sprite.texture = data.texture
-	labelNode.text = "[E] AMBIL " + data.name.capitalize()
+	labelNode.text = "[E] AMBIL " + data.name
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

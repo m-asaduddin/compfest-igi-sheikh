@@ -99,5 +99,13 @@ texture = ExtResource("9_b6vpw")
 [node name="ComputerScreen" parent="." unique_id=1493288129 instance=ExtResource("10_4ybyf")]
 position = Vector2(1565, 283)
 
+[node name="Waypoints" type="Node2D" parent="." unique_id=816787873]
+
+[node name="ambil_paket" type="Marker2D" parent="Waypoints" unique_id=1424509278]
+position = Vector2(2111, 448)
+
+[node name="antar_paket_1" type="Marker2D" parent="Waypoints" unique_id=1648657638]
+position = Vector2(17, 448)
+
 [editable path="Tang_item"]
 [editable path="ComputerScreen"]

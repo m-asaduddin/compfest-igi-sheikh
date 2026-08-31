@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_i1jam")
 id = "tang"
-name = "Tang"
+name = "TANG"
 texture = ExtResource("2_rf0l0")
 metadata/_custom_type_script = "uid://dc315jen6ra0"

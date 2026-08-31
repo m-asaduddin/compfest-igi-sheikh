@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://t63t354878ej" path="res://items/police-line.tres" id="8_1tp1v"]
 [ext_resource type="PackedScene" uid="uid://c5nocmmkseuqu" path="res://scenes/objects/dog.tscn" id="13_m3iaa"]
 [ext_resource type="PackedScene" uid="uid://cny65xtfq2x2r" path="res://scenes/objects/street_blockade.tscn" id="14_5lib3"]
+[ext_resource type="PackedScene" uid="uid://bwnk5oe6nv734" path="res://scenes/characters/npc.tscn" id="14_f72y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
 size = Vector2(320, 20)
@@ -81,21 +82,6 @@ scale = Vector2(4.4526787, 3.5051315)
 scale = Vector2(6.84, 1)
 shape = SubResource("RectangleShape2D_5811a")
 
-[node name="SpawnLeft" type="Marker2D" parent="." unique_id=1406269281]
-position = Vector2(84, 564)
-
-[node name="SpawnFromHome" type="Marker2D" parent="." unique_id=1865613871]
-position = Vector2(550, 570)
-
-[node name="SpawnFromWarehouse" type="Marker2D" parent="." unique_id=1126679790]
-position = Vector2(3780, 572)
-
-[node name="SpawnFromGang1" type="Marker2D" parent="." unique_id=74731612]
-position = Vector2(7395, 572)
-
-[node name="SpawnRight" type="Marker2D" parent="." unique_id=533008847]
-position = Vector2(2324, 552)
-
 [node name="Blokade_item" parent="." unique_id=372452859 instance=ExtResource("2_ycx43")]
 position = Vector2(18066, 569)
 data = ExtResource("8_1tp1v")
@@ -113,41 +99,63 @@ camera_limit_left = -20
 camera_limit_right = 29170
 camera_limit_top = -1000
 
-[node name="portal_home" parent="." unique_id=1062156617 instance=ExtResource("5_ahd70")]
+[node name="Dog" parent="." unique_id=519590660 instance=ExtResource("13_m3iaa")]
+position = Vector2(27898, 571)
+
+[node name="NPC" parent="." unique_id=1825660526 instance=ExtResource("14_f72y3")]
+position = Vector2(467, 546)
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=2115675467]
+
+[node name="SpawnLeft" type="Marker2D" parent="SpawnPoints" unique_id=1406269281]
+position = Vector2(84, 564)
+
+[node name="SpawnFromHome" type="Marker2D" parent="SpawnPoints" unique_id=1865613871]
+position = Vector2(550, 570)
+
+[node name="SpawnFromWarehouse" type="Marker2D" parent="SpawnPoints" unique_id=1126679790]
+position = Vector2(3780, 572)
+
+[node name="SpawnFromGang1" type="Marker2D" parent="SpawnPoints" unique_id=74731612]
+position = Vector2(7395, 572)
+
+[node name="SpawnRight" type="Marker2D" parent="SpawnPoints" unique_id=533008847]
+position = Vector2(2324, 552)
+
+[node name="SpawnFromGang2End" type="Marker2D" parent="SpawnPoints" unique_id=1514119940]
+position = Vector2(28032, 573)
+
+[node name="SpawnFromGang2Start" type="Marker2D" parent="SpawnPoints" unique_id=755887279]
+position = Vector2(14806, 567)
+
+[node name="Doors" type="Node2D" parent="." unique_id=1174930969]
+
+[node name="mc_home" parent="Doors" unique_id=1062156617 instance=ExtResource("5_ahd70")]
 position = Vector2(368, 573)
 target_scene = "uid://d3yq6y4k8dl56"
-target_scene_name = "Rumah MC"
+target_scene_name = "RUMAH WIRA"
 spawn_point_id = "SpawnRight"
 
-[node name="portal_warehouse" parent="." unique_id=136579448 instance=ExtResource("5_ahd70")]
+[node name="portal_warehouse" parent="Doors" unique_id=136579448 instance=ExtResource("5_ahd70")]
 position = Vector2(3660, 578)
 target_scene = "uid://d0pacuosref6q"
 target_scene_name = "Gudang Paket"
 spawn_point_id = "SpawnLeft"
 
-[node name="portal_gang_1" parent="." unique_id=1159880655 instance=ExtResource("5_ahd70")]
+[node name="portal_gang_1" parent="Doors" unique_id=1159880655 instance=ExtResource("5_ahd70")]
 position = Vector2(7268, 578)
 target_scene = "uid://gjduqbfthd7"
 target_scene_name = "Gang Kenanga"
 spawn_point_id = "SpawnLeft"
 
-[node name="SpawnFromGang2Start" type="Marker2D" parent="." unique_id=755887279]
-position = Vector2(14806, 567)
-
-[node name="portal_gang_2_start" parent="." unique_id=1348924290 instance=ExtResource("5_ahd70")]
+[node name="portal_gang_2_start" parent="Doors" unique_id=1348924290 instance=ExtResource("5_ahd70")]
 position = Vector2(14679, 573)
 target_scene = "uid://djickv5ovobka"
 target_scene_name = "Gang Melati"
 spawn_point_id = "SpawnLeft"
 
-[node name="SpawnFromGang2End" type="Marker2D" parent="." unique_id=1514119940]
-position = Vector2(28032, 573)
-
-[node name="portal_gang_2_end" parent="." unique_id=1618772639 instance=ExtResource("5_ahd70")]
+[node name="portal_gang_2_end" parent="Doors" unique_id=1618772639 instance=ExtResource("5_ahd70")]
 position = Vector2(28196, 579)
 target_scene = "uid://djickv5ovobka"
 target_scene_name = "Gang Melati"
 spawn_point_id = "SpawnRight"
-
-[node name="Dog" parent="." unique_id=519590660 instance=ExtResource("13_m3iaa")]
-position = Vector2(27898, 571)
