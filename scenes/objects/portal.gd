@@ -1,4 +1,5 @@
 extends Interactable
+class_name Portal
 
 @export_file("*.tscn") var target_scene: String
 @export var target_scene_name: String

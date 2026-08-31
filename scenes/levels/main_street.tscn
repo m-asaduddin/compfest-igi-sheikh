@@ -93,17 +93,17 @@ metadata/_custom_type_script = "uid://dvshf0k8ascox"
 [node name="StreetBlockade" parent="." unique_id=1213165164 instance=ExtResource("14_5lib3")]
 position = Vector2(14900, 579)
 
-[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("6_wgegj")]
-position = Vector2(117, 546)
-camera_limit_left = -20
-camera_limit_right = 29170
-camera_limit_top = -1000
-
 [node name="Dog" parent="." unique_id=519590660 instance=ExtResource("13_m3iaa")]
 position = Vector2(27898, 571)
 
 [node name="NPC" parent="." unique_id=1825660526 instance=ExtResource("14_f72y3")]
 position = Vector2(467, 546)
+
+[node name="Player" parent="." unique_id=1102112952 instance=ExtResource("6_wgegj")]
+position = Vector2(117, 546)
+camera_limit_left = -20
+camera_limit_right = 29170
+camera_limit_top = -1000
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=2115675467]
 

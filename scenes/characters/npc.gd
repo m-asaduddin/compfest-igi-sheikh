@@ -1,77 +1,94 @@
 extends CharacterBody2D
 class_name NPC
 
-@export var move_speed: float = 100.0
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var run_speed: float = 250.0
 
-var current_target_position: Vector2 = Vector2.ZERO
+var target_position: Vector2 = Vector2.ZERO
 var is_moving: bool = false
-var is_chased: bool = false # Flag jika sedang dikejar anjing
-var is_ride: bool = false
-var face_direction = "left"
-var _paket: Array[String] = []
+var face_direction: String = "right"
 
-@export var npc_id: String = "mc_npc"
+@onready var sprite = $CollisionShape2D/Sprite2D
+
+# Jadwal lokasi NPC sesuai tahapan cerita di StoryOrchestrator
+@export var scene_schedule: Dictionary = {
+	"mc_house": "res://scenes/levels/mc_home.tscn",
+	"mc_gudang": "res://scenes/levels/main_street.tscn",
+	"base_proceed": "res://scenes/levels/warehouse.tscn"
+}
 
 func _ready() -> void:
-	# Daftarkan node ke GameState
-	GameState.register_npc_node(npc_id, self)
-
-	var my_state = GameState.get_npc_state(npc_id)
-	var target_level = my_state.get("current_level", "")
-
-	# Jika NPC seharusnya tidak berada di scene level ini, hapus dari node scene
-	if target_level != "" and target_level != get_tree().current_scene.scene_file_path:
-		queue_free() # NPC disembunyikan/dihapus dari level ini
-
-func _physics_process(delta: float) -> void:
-	if is_chased:
-		# Logika tambahan jika dikejar anjing (misal lari lebih cepat)
-		move_speed = 200.0
+	add_to_group("NPC")
 	
-	if is_moving:
-		var direction = global_position.direction_to(current_target_position)
-		if direction.x > 0:
-			face_direction = "right"
-		elif direction.x < 0:
-			face_direction = "left"
-		velocity = direction * move_speed
+	# 1. Cek apakah NPC harus ada di scene aktif saat ini
+	if not _evaluate_presence():
+		return # Jika bukan di scene-nya, NPC dihapus (queue_free)
 		
-		# Putar animasi lari/jalan sesuai arah
-		if direction.x != 0:
-			if is_ride:
-				sprite.play("ride_right")
-			else :
-				sprite.play("run_right" if direction.x > 0 else "run_left")
+	# 2. Jalankan aksi cerita yang sedang berlangsung
+	_execute_story_action(StoryOrchestrator.get_current_action())
+
+func _evaluate_presence() -> bool:
+	var current_action = StoryOrchestrator.get_current_action()
+	var current_scene_file = get_tree().current_scene.scene_file_path
+	
+	if scene_schedule.has(current_action):
+		var target_scene_for_step = scene_schedule[current_action]
+		# Jika scene aktif beda dengan scene tugas NPC, hapus instance NPC ini
+		if current_scene_file != target_scene_for_step:
+			queue_free()
+			return false
 			
-		# Hentikan jika sudah dekat dengan target
-		if global_position.distance_to(current_target_position) < 5.0:
+	return true
+
+func _physics_process(_delta: float) -> void:
+	if is_moving:
+		var dir_x = sign(target_position.x - global_position.x)
+		if dir_x > 0:
+			face_direction = "right"
+		elif dir_x < 0:
+			face_direction = "left"
+			
+		velocity.x = dir_x * run_speed
+		velocity.y = 0
+		
+		if sprite and sprite.has_method("play"):
+			sprite.play("run_" + face_direction)
+		
+		# Deteksi jika NPC sudah mencapai target portalnya
+		if abs(global_position.x - target_position.x) < 10.0:
 			velocity = Vector2.ZERO
 			is_moving = false
-			sprite.play("idle_"+face_direction)
-		
-		move_and_slide()
+			_on_target_reached()
+		else:
+			move_and_slide()
 
-# Memindahkan NPC ke posisi target
-func move_to_location(target_pos: Vector2) -> void:
-	current_target_position = target_pos
+func _process(_delta: float) -> void:
+	if not is_moving and sprite and sprite.has_method("play"):
+		sprite.play("idle_" + face_direction)
+
+func _execute_story_action(action_name: String) -> void:
+	match action_name:
+		"mc_house":
+			var portal_exit = get_parent().find_child("Portal", true, false)
+			if portal_exit:
+				run_to(portal_exit.global_position)
+
+		"mc_gudang":
+			var portal_gudang = get_parent().find_child("portal_warehouse", true, false)
+			if portal_gudang:
+				run_to(portal_gudang.global_position)
+
+func run_to(destination: Vector2) -> void:
+	target_position = Vector2(destination.x, global_position.y)
 	is_moving = true
 
-# Fungsi helper pemutar animasi aksi spesifik
-func play_action_animation(anim_name: String, from_end: bool = false) -> void:
-	is_moving = false
-	velocity = Vector2.ZERO
-	sprite.play(anim_name, 1, from_end)
-	await sprite.animation_finished
-	sprite.play("idle_"+face_direction)
+# Dipanggil MURNI HANYA SAAT NPC sampai di portal tujuan
+func _on_target_reached() -> void:
+	var current_action = StoryOrchestrator.get_current_action()
 	
-func add_paket(nama: String):
-	_paket.append(nama)
-	var paket_node: Sprite2D = get_node("Sepeda/"+nama)
-	$Sepeda.visible = true
-	paket_node.visible = true
-
-func remove_paket():
-	var nama = _paket.pop_back()
-	var paket_node: Sprite2D = get_node("Sepeda/"+nama)
-	paket_node.visible = false
+	if current_action == "mc_house":
+		hide()
+		set_physics_process(false)
+		
+		# HANYA di sini state cerita dimajukan ke step berikutnya!
+		StoryOrchestrator.resolve_action_completion("mc_house")
+		queue_free()
