@@ -3,10 +3,16 @@ class_name NPC
 
 @export var run_speed: float = 200.0
 
+const DROPPED_PAKET_SCENE = preload("res://scenes/objects/dropped_paket.tscn")
+
 var start_pos: Vector2
 var target_pos: Vector2
 var is_moving: bool = false
 var face_direction: String = "right"
+
+# Dog chase state
+var is_fleeing_from_dog: bool = false
+var _paket_dropped: bool = false
 
 @onready var sprite = $CollisionShape2D/Sprite2D
 
@@ -56,18 +62,31 @@ func _ready() -> void:
 	_update_presence_and_movement()
 
 func _process(_delta: float) -> void:
-	_update_presence_and_movement()
+	# If fleeing from dog, skip normal story presence/movement update
+	if not is_fleeing_from_dog:
+		_update_presence_and_movement()
 	
 	if sprite and sprite.has_method("play"):
 		var action = StoryOrchestrator.get_current_action()
 		var anim_prefix = action_animations.get(action, "run")
 		
-		# Handle Sepeda (bike) visibility if the animation is 'ride'
+		# Handle Sepeda (bike) visibility — hidden when fleeing (paket already dropped)
 		var sepeda = find_child("Sepeda", true, false)
 		if sepeda:
-			sepeda.visible = (anim_prefix == "ride")
-			
-		if _is_playing_reach_anim:
+			if is_fleeing_from_dog:
+				sepeda.visible = false
+			else:
+				sepeda.visible = (anim_prefix == "ride")
+		
+		if is_fleeing_from_dog:
+			# Always play run_left when fleeing
+			if sprite.sprite_frames.has_animation("run_left"):
+				sprite.play("run_left")
+			else:
+				sprite.play("run_right")
+				sprite.flip_h = true
+			sprite.flip_h = false
+		elif _is_playing_reach_anim:
 			var anim_name = _reach_anim_prefix + "_" + face_direction
 			if sprite.sprite_frames.has_animation(anim_name):
 				sprite.play(anim_name)
@@ -188,6 +207,14 @@ func _get_action_nodes(action_name: String) -> Dictionary:
 	return {"start": start_node, "target": target_node}
 
 func _physics_process(delta: float) -> void:
+	# Dog chase: NPC runs left indefinitely until off screen
+	if is_fleeing_from_dog:
+		velocity.x = -run_speed
+		velocity.y = 0.0
+		face_direction = "left"
+		move_and_slide()
+		return
+
 	if _is_playing_reach_anim:
 		_reach_timer += delta
 		if _reach_timer >= _reach_duration:
@@ -234,3 +261,18 @@ func _physics_process(delta: float) -> void:
 func run_to(destination: Vector2) -> void:
 	target_pos = Vector2(destination.x, global_position.y)
 	is_moving = true
+
+# Called by the dog when it detects and chases the NPC
+func flee_from_dog() -> void:
+	if is_fleeing_from_dog:
+		return
+	is_fleeing_from_dog = true
+	is_moving = false
+	_is_playing_reach_anim = false
+	
+	# Drop the paket at NPC current position before fleeing
+	if not _paket_dropped:
+		_paket_dropped = true
+		var paket_instance = DROPPED_PAKET_SCENE.instantiate()
+		get_parent().add_child(paket_instance)
+		paket_instance.global_position = global_position

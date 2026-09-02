@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dropped_paket_scene"]
+
+[ext_resource type="Script" path="res://scenes/objects/dropped_paket.gd" id="1_dpkt"]
+[ext_resource type="Texture2D" uid="uid://bsxnsgfqzipg8" path="res://assets/sprites/interactables/paket.png" id="2_dpkt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpkt"]
+size = Vector2(80, 80)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dpkt"]
+font_size = 22
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DroppedPaket" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_dpkt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_dpkt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_dpkt")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 10
+offset_left = -99.0
+offset_top = -120.0
+offset_right = 99.0
+offset_bottom = -97.0
+label_settings = SubResource("LabelSettings_dpkt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

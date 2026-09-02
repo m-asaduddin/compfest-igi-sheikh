@@ -1,6 +1,5 @@
-[gd_scene format=3 uid="uid://pnyqmb3qjcwi"]
+[gd_scene format=3 uid="uid://c5nocmmkseuqu"]
 
-[ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="1_jkxci"]
 [ext_resource type="Script" uid="uid://fn6l0y7rsgbt" path="res://scenes/objects/dog.gd" id="1_tfmc1"]
 [ext_resource type="Texture2D" uid="uid://bx0kk1uf6w1r8" path="res://assets/sprites/dog/dog_idle.png" id="2_tfmc1"]
 [ext_resource type="Texture2D" uid="uid://cf22gl01um3ee" path="res://assets/sprites/dog/dog_idle_unleashed.png" id="3_wlxaj"]
@@ -12,6 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://ckywe3yr0lm1w" path="res://assets/sprites/dog/dog_run_3.png" id="9_udstv"]
 [ext_resource type="Texture2D" uid="uid://hxp1hy555cod" path="res://assets/sprites/dog/dog_run_8.png" id="10_66i18"]
 [ext_resource type="Texture2D" uid="uid://bqcedvl2mcabf" path="res://assets/sprites/dog/dog_run_4.png" id="11_tt7b4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ek5ad"]
+size = Vector2(235, 211)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2j25o"]
+font_size = 22
+outline_size = 3
+outline_color = Color(0.00016308395, 0.00016308395, 0.00016308393, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlxaj"]
 atlas = ExtResource("2_tfmc1")
@@ -45,7 +52,7 @@ region = Rect2(1200, 0, 600, 600)
 atlas = ExtResource("3_wlxaj")
 region = Rect2(1800, 0, 600, 600)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_tfmc1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5811a"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -111,26 +118,45 @@ animations = [{
 "speed": 13.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlxaj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detect"]
 size = Vector2(2000, 300)
 
-[node name="dog" unique_id=1213165164 instance=ExtResource("1_jkxci")]
+[node name="Dog" type="Area2D" unique_id=1477441888]
+collision_layer = 5
+collision_mask = 3
 script = ExtResource("1_tfmc1")
-chase_speed = 280.0
+object_id = "gunting"
+interaction_label = "[E] Lepas Tali"
 remove_on_success = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=618313591]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125512025]
+position = Vector2(3.5, -80.5)
+shape = SubResource("RectangleShape2D_ek5ad")
+
+[node name="Label" type="Label" parent="." unique_id=1267167104]
+visible = false
+z_index = 10
+offset_left = -99.0
+offset_top = -274.0
+offset_right = 93.0
+offset_bottom = -251.0
+label_settings = SubResource("LabelSettings_2j25o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=961779391]
+z_index = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=577090467]
 position = Vector2(9.999996, -63)
 scale = Vector2(0.34, 0.34)
-sprite_frames = SubResource("SpriteFrames_tfmc1")
+sprite_frames = SubResource("SpriteFrames_5811a")
 animation = &"idle"
 
-[node name="DetectionArea" type="Area2D" parent="." index="4" unique_id=1103734993]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1288443708]
 collision_layer = 0
 collision_mask = 17
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0" unique_id=1564762780]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=354504614]
 position = Vector2(-34, -80)
-shape = SubResource("RectangleShape2D_wlxaj")
-
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+shape = SubResource("RectangleShape2D_detect")

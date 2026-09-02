@@ -9,6 +9,7 @@ extends Control
 func _ready() -> void:
 	newgame_btn.pressed.connect(new_game_pressed)
 	loadgame_btn.pressed.connect(continue_pressed)
+	credits_btn.pressed.connect(SceneManager.show_ending)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,8 +19,8 @@ func new_game_pressed():
 	SaveManager.save_state.clear()
 	GameState.inventories.clear()
 	
-	SceneManager.transition_to_scene(first_scene)
 	await SceneManager.show_opening()
+	SceneManager.transition_to_scene(first_scene)
 	
 	StoryOrchestrator.is_active = true
 	if StoryOrchestrator.is_active and not StoryOrchestrator.npc_is_travelling and StoryOrchestrator.get_current_action() != "":

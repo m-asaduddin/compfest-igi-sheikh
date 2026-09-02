@@ -105,10 +105,6 @@ func show_opening() -> void :
 	opening_video.play()
 	await opening_video.finished
 	opening_video.hide()
-	anim_player.play("LoadIn")
-	await anim_player.animation_finished
-	anim_player.play("LoadOut")
-	await anim_player.animation_finished
 
 func show_ending() -> void :
 	var ending_cutscene = $Ending_cutscene
@@ -116,10 +112,6 @@ func show_ending() -> void :
 	ending_cutscene.play()
 	await ending_cutscene.finished
 	ending_cutscene.hide()
-	anim_player.play("LoadIn")
-	await anim_player.animation_finished
-	anim_player.play("LoadOut")
-	await anim_player.animation_finished
 
 func show_computer_overlay() -> void:
 	$ScreenOverlay.visible = true

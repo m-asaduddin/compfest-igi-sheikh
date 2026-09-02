@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dqtllofykud1x" path="res://assets/sprites/levels/Background-Jalan-Utama-5.png" id="6_5lib3"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="6_wgegj"]
 [ext_resource type="Resource" uid="uid://t63t354878ej" path="res://items/police-line.tres" id="8_1tp1v"]
-[ext_resource type="PackedScene" uid="uid://c5nocmmkseuqu" path="res://scenes/objects/dog.tscn" id="13_m3iaa"]
 [ext_resource type="PackedScene" uid="uid://cny65xtfq2x2r" path="res://scenes/objects/street_blockade.tscn" id="14_5lib3"]
 [ext_resource type="PackedScene" uid="uid://bwnk5oe6nv734" path="res://scenes/characters/npc.tscn" id="14_f72y3"]
+[ext_resource type="PackedScene" uid="uid://pnyqmb3qjcwi" path="res://scenes/objects/dog.tscn" id="15_f72y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
 size = Vector2(320, 20)
@@ -93,9 +93,6 @@ metadata/_custom_type_script = "uid://dvshf0k8ascox"
 [node name="StreetBlockade" parent="." unique_id=1213165164 instance=ExtResource("14_5lib3")]
 position = Vector2(14900, 579)
 
-[node name="Dog" parent="." unique_id=519590660 instance=ExtResource("13_m3iaa")]
-position = Vector2(27898, 571)
-
 [node name="NPC" parent="." unique_id=1825660526 instance=ExtResource("14_f72y3")]
 position = Vector2(467, 546)
 
@@ -170,3 +167,6 @@ position = Vector2(11887, 575)
 
 [node name="antar_paket_x" type="Marker2D" parent="Node2D" unique_id=645829624]
 position = Vector2(27631, 575)
+
+[node name="dog" parent="." unique_id=45030144 instance=ExtResource("15_f72y3")]
+position = Vector2(27902, 571)
