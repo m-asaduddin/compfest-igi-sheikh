@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dt48lf4m6ir37"]
+
+[ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="1_j0635"]
+[ext_resource type="Script" uid="uid://c10i517i5eoqa" path="res://scenes/objects/computer_screen.gd" id="2_7wu0k"]
+
+[node name="ComputerScreen" unique_id=1213165164 instance=ExtResource("1_j0635")]
+script = ExtResource("2_7wu0k")

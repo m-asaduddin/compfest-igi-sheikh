@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://bkvih16eil0qw"]
+
+[ext_resource type="PackedScene" uid="uid://lw233ttumloa" path="res://scenes/objects/overlay.tscn" id="1_u8nb8"]
+[ext_resource type="Texture2D" uid="uid://bb0ypqo22qesn" path="res://assets/sprites/interactables/computer-monitor.png" id="2_2fmv2"]
+[ext_resource type="Script" uid="uid://dx3t4x4a4ojrv" path="res://scenes/objects/screen_overlay.gd" id="2_vq3w0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5811a"]
+font_size = 40
+font_color = Color(0.27000007, 0.9, 0.14400002, 1)
+
+[node name="ScreenOverlay" unique_id=1148496403 instance=ExtResource("1_u8nb8")]
+anchor_top = 0.047000002
+anchor_right = 0.96700007
+offset_top = 0.15999985
+offset_right = 0.23986816
+color = Color(0.64, 0.6336, 0.512, 0)
+script = ExtResource("2_vq3w0")
+
+[node name="ComputerMonitor" type="Sprite2D" parent="." index="0" unique_id=1769452078]
+position = Vector2(581, 309)
+scale = Vector2(0.7734745, 0.77347434)
+texture = ExtResource("2_2fmv2")
+
+[node name="main_screen" type="Control" parent="ComputerMonitor" index="0" unique_id=1894815342]
+layout_mode = 3
+anchor_left = 0.476
+anchor_top = 0.497
+anchor_right = 0.476
+anchor_bottom = 0.497
+offset_left = -1178.5289
+offset_top = -750.53955
+offset_right = -168.79938
+offset_bottom = -101.5199
+
+[node name="main" type="Label" parent="ComputerMonitor/main_screen" index="0" unique_id=1768064312]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.503
+anchor_top = 0.5
+anchor_right = 0.503
+anchor_bottom = 0.5
+offset_left = -493.3112
+offset_top = -289.8456
+offset_right = 494.0783
+offset_bottom = -118.84561
+text = "SISTEM PENCATATAN KIRIMAN
+
+MASUKKAN NOMOR KIRIMAN"
+label_settings = SubResource("LabelSettings_5811a")
+
+[node name="LineEdit" type="LineEdit" parent="ComputerMonitor/main_screen" index="1" unique_id=947638503]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023000002
+anchor_top = 0.39900002
+anchor_right = 0.023000002
+anchor_bottom = 0.39900002
+offset_left = 0.047872543
+offset_top = -37.878464
+offset_right = 563.7381
+offset_bottom = 38.400757
+theme_override_colors/font_color = Color(0.2509804, 0.73333335, 0.15294118, 1)
+theme_override_font_sizes/font_size = 40
+emoji_menu_enabled = false
+backspace_deletes_composite_character_enabled = true
+
+[node name="not_found" type="Label" parent="ComputerMonitor/main_screen" index="2" unique_id=1495633000]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50200003
+anchor_top = 0.625
+anchor_right = 0.50200003
+anchor_bottom = 0.625
+offset_left = -493.95557
+offset_top = -38.4628
+offset_right = 493.43396
+offset_bottom = 37.816406
+text = "NOMOR KIRIMAN TIDAK DITEMUKAN!"
+label_settings = SubResource("LabelSettings_5811a")
+
+[node name="wahyudi" type="Label" parent="ComputerMonitor" index="1" unique_id=1121818301]
+visible = false
+anchors_preset = -1
+anchor_left = 0.483
+anchor_top = 0.47300002
+anchor_right = 0.483
+anchor_bottom = 0.47300002
+offset_left = -1103.9146
+offset_top = -656.3981
+offset_right = -240.91452
+offset_bottom = -195.39807
+text = "NOMOR KIRIMAN: 9237283
+TANGGAL: 1 SEP 1986
+ PENGIRIM: WAHYUDI
+ALAMAT PENGIRIM: JL. Gg. MELATI NO.09
+
+PENERIMA: YANTO
+ALAMAT: JL.Kembang Bali NO. C15, Jayantara
+NAMA PETUGAS: WIRA"
+label_settings = SubResource("LabelSettings_5811a")
+
+[node name="Button" parent="." index="1" unique_id=1133308886]
+anchor_left = 0.48100004
+anchor_top = 0.81900007
+anchor_right = 0.48100004
+anchor_bottom = 0.81900007
+offset_left = -118.42804
+offset_top = -34.210052
+offset_right = 122.57196
+offset_bottom = 34.789948
+text = "Cek Paket"
+
+[node name="TextureButton" parent="." index="2" unique_id=1558960412]
+anchor_left = 0.878
+anchor_top = 0.063
+anchor_right = 0.878
+anchor_bottom = 0.063
+offset_left = -32.063965
+offset_top = -32.170002
+offset_right = 31.936035
+offset_bottom = 31.829998

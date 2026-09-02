@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_o0mbb")
 id = "police-line"
-name = "Garis Polisi"
+name = "GARIS POLISI"
 texture = ExtResource("2_mpk7w")
 metadata/_custom_type_script = "uid://dc315jen6ra0"

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://lw233ttumloa"]
+
+[ext_resource type="Script" uid="uid://srlukurfg2cw" path="res://scenes/objects/overlay.gd" id="1_5rgtv"]
+[ext_resource type="Texture2D" uid="uid://dfklwc6b0oxl1" path="res://assets/sprites/interactables/close button.png" id="5_qorr8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svbij"]
+bg_color = Color(0.36, 0.32472003, 0.20880002, 1)
+
+[node name="Overlay" type="ColorRect" unique_id=1148496403]
+process_mode = 3
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.081
+anchor_right = 0.94400007
+anchor_bottom = 0.86700004
+offset_left = 0.07999802
+offset_top = -0.3199997
+offset_right = -0.32006836
+offset_bottom = -0.24005127
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.64, 0.6336, 0.512, 1)
+script = ExtResource("1_5rgtv")
+
+[node name="Button" type="Button" parent="." unique_id=1133308886]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.523
+anchor_top = 0.89300007
+anchor_right = 0.523
+anchor_bottom = 0.89300007
+offset_left = -120.63397
+offset_top = -34.43805
+offset_right = 120.36603
+offset_bottom = 34.56195
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_svbij")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1558960412]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95500004
+anchor_top = 0.081
+anchor_right = 0.95500004
+anchor_bottom = 0.081
+offset_left = -31.890015
+offset_top = -31.846
+offset_right = 32.109985
+offset_bottom = 32.154
+texture_normal = ExtResource("5_qorr8")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

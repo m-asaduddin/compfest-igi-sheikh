@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://4ldgf7vw0d2d" path="res://scripts/level_scene.gd" id="1_ba3tk"]
 [ext_resource type="Texture2D" uid="uid://cvgawpmq3q33u" path="res://assets/sprites/levels/Background-Gang-Melati.png" id="2_ba3tk"]
 [ext_resource type="PackedScene" uid="uid://by1rdbf5ux2qf" path="res://scenes/characters/player.tscn" id="3_7qkep"]
+[ext_resource type="PackedScene" uid="uid://bwnk5oe6nv734" path="res://scenes/characters/npc.tscn" id="4_jraqb"]
 [ext_resource type="PackedScene" uid="uid://bk20n67jylgdj" path="res://scenes/objects/portal.tscn" id="4_q66x3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycf23"]
@@ -58,6 +59,9 @@ position = Vector2(326, 499)
 camera_limit_left = -30
 camera_limit_right = 5154
 
+[node name="NPC" parent="." unique_id=1728771085 instance=ExtResource("4_jraqb")]
+position = Vector2(56, 483)
+
 [node name="portal_utama" parent="." unique_id=1062156617 instance=ExtResource("4_q66x3")]
 position = Vector2(77, 530)
 target_scene = "uid://bhqajjc2kh436"
@@ -69,3 +73,8 @@ position = Vector2(4950, 530)
 target_scene = "uid://bhqajjc2kh436"
 target_scene_name = "Jalan Utama"
 spawn_point_id = "SpawnFromGang2End"
+
+[node name="Waypoints" type="Node2D" parent="." unique_id=1936917450]
+
+[node name="antar_paket_start" type="Marker2D" parent="Waypoints" unique_id=504698710]
+position = Vector2(5148, 506)

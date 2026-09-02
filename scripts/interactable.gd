@@ -26,16 +26,22 @@ func _input(event: InputEvent) -> void:
 	if player_in_area and event.is_action_pressed("interact"):
 		await interact()
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: CharacterBody2D) -> void:
 	if body is Player:
 		player = body
 		labelNode.visible = true
 		player_in_area = true
+	if body is NPC and self is Portal:
+		_on_npc_entered()
+		#print("npc in area")
+		#body.hide()
 
 
-func _on_body_exited(body: Node2D) -> void:
+func _on_body_exited(body: CharacterBody2D) -> void:
 	if body is Player:
 		player = null
 		labelNode.visible = false
 		player_in_area = false
 		
+func _on_npc_entered() -> void:
+	pass

@@ -1,4 +1,5 @@
 extends Interactable
+class_name Portal
 
 @export_file("*.tscn") var target_scene: String
 @export var target_scene_name: String
@@ -18,7 +19,7 @@ func interact() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	labelNode.text = "[E] ke " + target_scene_name
+	labelNode.text = "[E] KE " + target_scene_name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

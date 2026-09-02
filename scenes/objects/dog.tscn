@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c5nocmmkseuqu"]
+[gd_scene format=3 uid="uid://pnyqmb3qjcwi"]
 
 [ext_resource type="PackedScene" uid="uid://dk4wsi4y1w8k8" path="res://scenes/objects/interactive_object.tscn" id="1_jkxci"]
 [ext_resource type="Script" uid="uid://fn6l0y7rsgbt" path="res://scenes/objects/dog.gd" id="1_tfmc1"]
@@ -45,7 +45,7 @@ region = Rect2(1200, 0, 600, 600)
 atlas = ExtResource("3_wlxaj")
 region = Rect2(1800, 0, 600, 600)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5811a"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_tfmc1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -111,14 +111,26 @@ animations = [{
 "speed": 13.0
 }]
 
-[node name="Dog" unique_id=1213165164 instance=ExtResource("1_jkxci")]
-collision_mask = 19
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlxaj"]
+size = Vector2(2000, 300)
+
+[node name="dog" unique_id=1213165164 instance=ExtResource("1_jkxci")]
 script = ExtResource("1_tfmc1")
-interaction_label = "[E] Lepas Tali"
+chase_speed = 280.0
 remove_on_success = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=577090467]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=618313591]
 position = Vector2(9.999996, -63)
 scale = Vector2(0.34, 0.34)
-sprite_frames = SubResource("SpriteFrames_5811a")
+sprite_frames = SubResource("SpriteFrames_tfmc1")
 animation = &"idle"
+
+[node name="DetectionArea" type="Area2D" parent="." index="4" unique_id=1103734993]
+collision_layer = 0
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0" unique_id=1564762780]
+position = Vector2(-34, -80)
+shape = SubResource("RectangleShape2D_wlxaj")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

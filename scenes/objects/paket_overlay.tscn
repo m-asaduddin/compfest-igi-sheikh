@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://s5a6y8370bli"]
+
+[ext_resource type="PackedScene" uid="uid://lw233ttumloa" path="res://scenes/objects/overlay.tscn" id="1_fijjm"]
+[ext_resource type="Script" uid="uid://cpi2n167vpbdn" path="res://scenes/objects/paket_overlay.gd" id="2_6qkd4"]
+[ext_resource type="Texture2D" uid="uid://bqh0aqhnyono2" path="res://assets/sprites/interactables/box-upper.png" id="3_tr0dx"]
+[ext_resource type="Texture2D" uid="uid://cic760fp8ybdu" path="res://assets/sprites/interactables/box-info-1.png" id="4_86jnu"]
+[ext_resource type="Texture2D" uid="uid://wmabalkfqtop" path="res://assets/sprites/interactables/box-info-2.png" id="5_lpwdw"]
+
+[node name="PaketOverlay" unique_id=1148496403 instance=ExtResource("1_fijjm")]
+script = ExtResource("2_6qkd4")
+
+[node name="Button" parent="." index="0" unique_id=1133308886]
+text = "Tukar Paket"
+
+[node name="BoxUpper" type="Sprite2D" parent="." index="2" unique_id=1614602359]
+position = Vector2(347, 253.00003)
+scale = Vector2(0.63, 0.63)
+texture = ExtResource("3_tr0dx")
+
+[node name="BoxInfo1" type="Sprite2D" parent="BoxUpper" index="0" unique_id=184026869]
+position = Vector2(-9.523804, 3.1745605)
+scale = Vector2(1.4708993, 1.4708993)
+texture = ExtResource("4_86jnu")
+
+[node name="BoxUpper2" type="Sprite2D" parent="." index="3" unique_id=2031516094]
+position = Vector2(856, 252.00003)
+scale = Vector2(0.5430001, 0.54300004)
+texture = ExtResource("3_tr0dx")
+
+[node name="BoxInfo2" type="Sprite2D" parent="BoxUpper2" index="0" unique_id=247161892]
+position = Vector2(5.5247803, 12.891296)
+scale = Vector2(1.479435, 1.4794352)
+texture = ExtResource("5_lpwdw")

@@ -15,6 +15,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5811a"]
 size = Vector2(78, 98.5)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5lib3"]
+blend_mode = 1
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
 atlas = ExtResource("2_6eyoc")
 region = Rect2(0, 0, 419, 621)
@@ -882,10 +885,11 @@ shape = SubResource("RectangleShape2D_5811a")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1635186547]
 z_index = 2
+material = SubResource("CanvasItemMaterial_5lib3")
 position = Vector2(-9.536743e-07, -30.25)
 scale = Vector2(0.37923425, 0.37923422)
 sprite_frames = SubResource("SpriteFrames_gpktr")
-animation = &"ride_left"
+animation = &"idle_right"
 offset = Vector2(0, -10)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1599820221]

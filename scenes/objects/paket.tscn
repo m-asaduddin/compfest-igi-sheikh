@@ -5,5 +5,3 @@
 
 [node name="Paket" unique_id=1213165164 instance=ExtResource("1_3tjv5")]
 script = ExtResource("2_gghut")
-interaction_label = "[E] Tukar Paket"
-requires_inventory = false

@@ -1,0 +1,461 @@
+[gd_scene format=3 uid="uid://syxiuh3rotnw"]
+
+[ext_resource type="PackedScene" uid="uid://lw233ttumloa" path="res://scenes/objects/overlay.tscn" id="1_2gt7n"]
+[ext_resource type="Texture2D" uid="uid://nuggu1dliea3" path="res://assets/sprites/interactables/bomb/background-bom-box.png" id="2_1joto"]
+[ext_resource type="Texture2D" uid="uid://yb3xgfb5aewf" path="res://assets/sprites/interactables/bomb/background-bom.png" id="3_wdvkw"]
+[ext_resource type="Texture2D" uid="uid://di37toexjfsce" path="res://assets/sprites/interactables/bomb/button-clicked.png" id="4_wdvkw"]
+[ext_resource type="Texture2D" uid="uid://nh64qrgv8pac" path="res://assets/sprites/interactables/bomb/cable-connected-blue.png" id="5_hphsj"]
+[ext_resource type="Texture2D" uid="uid://duxx424wyieh6" path="res://assets/sprites/interactables/bomb/cable-connected-yellow.png" id="6_1uikh"]
+[ext_resource type="Texture2D" uid="uid://ccefy14xmgcn1" path="res://assets/sprites/interactables/bomb/cable-connected-green.png" id="7_ekoic"]
+[ext_resource type="Texture2D" uid="uid://6gnpi7nutnew" path="res://assets/sprites/interactables/bomb/cable-connected-white.png" id="8_7hj2h"]
+[ext_resource type="Texture2D" uid="uid://dg4m8ou5mp1yc" path="res://assets/sprites/interactables/bomb/cable-cut-blue.png" id="9_14xwo"]
+[ext_resource type="Texture2D" uid="uid://cgr4cvrtuc16" path="res://assets/sprites/interactables/bomb/cable-cut-yellow.png" id="10_e5yui"]
+[ext_resource type="Texture2D" uid="uid://bf6rr7x2b1ic3" path="res://assets/sprites/interactables/bomb/cable-cut-green.png" id="11_vp0jl"]
+[ext_resource type="Texture2D" uid="uid://cqo6y4nlow502" path="res://assets/sprites/interactables/bomb/cable-cut-white.png" id="12_2mrnr"]
+[ext_resource type="Texture2D" uid="uid://cekwl54lri6w7" path="res://assets/sprites/interactables/bomb/lamp-green.png" id="13_1uikh"]
+[ext_resource type="Texture2D" uid="uid://fq8cmvqch861" path="res://assets/sprites/interactables/bomb/lamp-red.png" id="14_7hj2h"]
+[ext_resource type="Texture2D" uid="uid://bsxn7mab1c3cj" path="res://assets/sprites/interactables/bomb/lamp-off.png" id="15_14xwo"]
+[ext_resource type="Script" uid="uid://cqtx24hfjrn37" path="res://scenes/objects/bomb_overlay.gd" id="16_2gt7n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5811a"]
+font_size = 32
+font_color = Color(0.07398855, 0.07398855, 0.07398855, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xyh1v"]
+font_size = 48
+font_color = Color(0.37664998, 0.93, 0.13949998, 1)
+
+[node name="BombOverlay" unique_id=1148496403 instance=ExtResource("1_2gt7n")]
+anchor_top = 0.053000003
+anchor_bottom = 0.94600004
+offset_top = -0.16000366
+offset_bottom = -0.12005615
+script = ExtResource("16_2gt7n")
+
+[node name="Button" parent="." index="0" unique_id=1133308886]
+visible = false
+
+[node name="BackgroundBomBox" type="Sprite2D" parent="." index="1" unique_id=998839074]
+position = Vector2(570.25, 316)
+scale = Vector2(1.9690118, 1.6237622)
+texture = ExtResource("2_1joto")
+
+[node name="TextureButton" parent="." index="2" unique_id=1558960412]
+visible = false
+
+[node name="BackgroundBom" type="Sprite2D" parent="." index="3" unique_id=1949671273]
+position = Vector2(597.00006, 315)
+scale = Vector2(1.6327678, 1.6327683)
+texture = ExtResource("3_wdvkw")
+
+[node name="TextureButton1" type="TextureButton" parent="BackgroundBom" index="0" unique_id=396094427]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.22100002
+anchor_right = 0.59900004
+anchor_bottom = 0.374
+offset_left = -275.3374
+offset_top = -178.06447
+offset_right = -272.49042
+offset_bottom = -175.22647
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton1" index="0" unique_id=306471504]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="BackgroundBom" index="1" unique_id=985334213]
+anchors_preset = -1
+anchor_left = 0.629
+anchor_top = 0.22100002
+anchor_right = 0.72700006
+anchor_bottom = 0.374
+offset_left = -275.46786
+offset_top = -178.67694
+offset_right = -272.07388
+offset_bottom = -175.83893
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton2" index="0" unique_id=82291503]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="BackgroundBom" index="2" unique_id=27618266]
+anchors_preset = -1
+anchor_left = 0.758
+anchor_top = 0.22100002
+anchor_right = 0.85600007
+anchor_bottom = 0.374
+offset_left = -276.2108
+offset_top = -178.06447
+offset_right = -272.8168
+offset_bottom = -175.22647
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton3" index="0" unique_id=2017355856]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton4" type="TextureButton" parent="BackgroundBom" index="3" unique_id=2091342176]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.41000003
+anchor_right = 0.59900004
+anchor_bottom = 0.56200004
+offset_left = -275.3374
+offset_top = -178.21268
+offset_right = -272.49042
+offset_bottom = -175.02066
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton4" index="0" unique_id=2020349387]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "4"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton5" type="TextureButton" parent="BackgroundBom" index="4" unique_id=740814642]
+anchors_preset = -1
+anchor_left = 0.629
+anchor_top = 0.41000003
+anchor_right = 0.72700006
+anchor_bottom = 0.56200004
+offset_left = -276.08032
+offset_top = -178.21268
+offset_right = -272.68634
+offset_bottom = -175.02066
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton5" index="0" unique_id=2040640280]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "5"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton6" type="TextureButton" parent="BackgroundBom" index="5" unique_id=1549651917]
+anchors_preset = -1
+anchor_left = 0.758
+anchor_top = 0.41000003
+anchor_right = 0.85600007
+anchor_bottom = 0.56200004
+offset_left = -276.2108
+offset_top = -178.21268
+offset_right = -272.8168
+offset_bottom = -175.02066
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton6" index="0" unique_id=1366100506]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton7" type="TextureButton" parent="BackgroundBom" index="6" unique_id=1076259502]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.59900004
+anchor_bottom = 0.753
+offset_left = -275.3374
+offset_top = -177.48997
+offset_right = -272.49042
+offset_bottom = -174.65198
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton7" index="0" unique_id=1826839220]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "7"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton8" type="TextureButton" parent="BackgroundBom" index="7" unique_id=138454690]
+anchors_preset = -1
+anchor_left = 0.629
+anchor_top = 0.6
+anchor_right = 0.72700006
+anchor_bottom = 0.753
+offset_left = -276.08032
+offset_top = -178.10243
+offset_right = -272.68634
+offset_bottom = -175.26443
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton8" index="0" unique_id=1119795013]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "8"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton9" type="TextureButton" parent="BackgroundBom" index="8" unique_id=1041974216]
+anchors_preset = -1
+anchor_left = 0.758
+anchor_top = 0.6
+anchor_right = 0.85600007
+anchor_bottom = 0.753
+offset_left = -276.2108
+offset_top = -178.10243
+offset_right = -272.8168
+offset_bottom = -175.26443
+texture_normal = ExtResource("4_wdvkw")
+texture_pressed = ExtResource("4_wdvkw")
+
+[node name="Label" type="Label" parent="BackgroundBom/TextureButton9" index="0" unique_id=1001231033]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.744507
+offset_top = -22.60849
+offset_right = -5.744507
+offset_bottom = 11.39151
+grow_horizontal = 2
+grow_vertical = 2
+text = "9"
+label_settings = SubResource("LabelSettings_5811a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cables" type="Node2D" parent="." index="4" unique_id=368989475]
+
+[node name="CableConnectedBlue" type="Sprite2D" parent="Cables" index="0" unique_id=882757114]
+position = Vector2(400.25003, 344.62497)
+scale = Vector2(1.9861108, 1.6376401)
+texture = ExtResource("5_hphsj")
+
+[node name="CableConnectedYellow" type="Sprite2D" parent="Cables" index="1" unique_id=1079146902]
+position = Vector2(454.00003, 346)
+scale = Vector2(1.6571428, 1.6571429)
+texture = ExtResource("6_1uikh")
+
+[node name="CableConnectedGreen" type="Sprite2D" parent="Cables" index="2" unique_id=1213057737]
+position = Vector2(296, 343.58334)
+scale = Vector2(1.6111106, 1.6111107)
+texture = ExtResource("7_ekoic")
+
+[node name="CableConnectedWhite" type="Sprite2D" parent="Cables" index="3" unique_id=1689780950]
+position = Vector2(349.75, 345.19287)
+scale = Vector2(1.6428578, 1.6428579)
+texture = ExtResource("8_7hj2h")
+
+[node name="CableConnectedBlueCut" type="Sprite2D" parent="Cables" index="4" unique_id=95857729]
+visible = false
+position = Vector2(400.25003, 344.62497)
+scale = Vector2(1.9861108, 1.6376401)
+texture = ExtResource("9_14xwo")
+
+[node name="CableConnectedYellowCut" type="Sprite2D" parent="Cables" index="5" unique_id=1636943984]
+visible = false
+position = Vector2(454.00003, 346)
+scale = Vector2(1.6571428, 1.6571429)
+texture = ExtResource("10_e5yui")
+
+[node name="CableConnectedGreenCut" type="Sprite2D" parent="Cables" index="6" unique_id=295830688]
+visible = false
+position = Vector2(296, 343.58334)
+scale = Vector2(1.6111106, 1.6111107)
+texture = ExtResource("11_vp0jl")
+
+[node name="CableConnectedWhiteCut" type="Sprite2D" parent="Cables" index="7" unique_id=2011066093]
+visible = false
+position = Vector2(349.75, 345.19287)
+scale = Vector2(1.6428578, 1.6428579)
+texture = ExtResource("12_2mrnr")
+
+[node name="Lamps" type="Node2D" parent="." index="5" unique_id=1325949494]
+
+[node name="LampOff1" type="Sprite2D" parent="Lamps" index="0" unique_id=660974585]
+visible = false
+position = Vector2(279, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("15_14xwo")
+
+[node name="LampOff2" type="Sprite2D" parent="Lamps" index="1" unique_id=1893715121]
+visible = false
+position = Vector2(330, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("15_14xwo")
+
+[node name="LampOff3" type="Sprite2D" parent="Lamps" index="2" unique_id=299601959]
+visible = false
+position = Vector2(395, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("15_14xwo")
+
+[node name="LampOff4" type="Sprite2D" parent="Lamps" index="3" unique_id=1279331021]
+visible = false
+position = Vector2(453, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("15_14xwo")
+
+[node name="LampRed1" type="Sprite2D" parent="Lamps" index="4" unique_id=1546798822]
+position = Vector2(279, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("14_7hj2h")
+
+[node name="LampRed2" type="Sprite2D" parent="Lamps" index="5" unique_id=1022379097]
+position = Vector2(330, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("14_7hj2h")
+
+[node name="LampRed3" type="Sprite2D" parent="Lamps" index="6" unique_id=397302206]
+position = Vector2(395, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("14_7hj2h")
+
+[node name="LampRed4" type="Sprite2D" parent="Lamps" index="7" unique_id=1826054262]
+position = Vector2(453, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("14_7hj2h")
+
+[node name="LampGreen" type="Sprite2D" parent="Lamps" index="8" unique_id=1583644238]
+visible = false
+position = Vector2(279, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_1uikh")
+
+[node name="LampGreen2" type="Sprite2D" parent="Lamps" index="9" unique_id=244327023]
+visible = false
+position = Vector2(330, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_1uikh")
+
+[node name="LampGreen3" type="Sprite2D" parent="Lamps" index="10" unique_id=2093871819]
+visible = false
+position = Vector2(395, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_1uikh")
+
+[node name="LampGreen4" type="Sprite2D" parent="Lamps" index="11" unique_id=151305933]
+visible = false
+position = Vector2(453, 482)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("13_1uikh")
+
+[node name="TimerLabel" type="Label" parent="." index="6" unique_id=1229102212]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21800001
+anchor_top = 0.17600001
+anchor_right = 0.41500002
+anchor_bottom = 0.34500003
+offset_left = -0.4440155
+offset_top = -0.1680069
+offset_right = 0.42996216
+offset_bottom = 0.16497803
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_xyh1v")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://4g1r8c4y4ijp" path="res://scripts/nodes/scene_manager.gd" id="1_xyasa"]
 [ext_resource type="PackedScene" uid="uid://b8gb3qqjtnm1s" path="res://scenes/ui/inventory.tscn" id="2_p4645"]
 [ext_resource type="PackedScene" uid="uid://bmc4ntfxup44q" path="res://scenes/ui/dialog_box.tscn" id="3_r7uh2"]
+[ext_resource type="PackedScene" uid="uid://s5a6y8370bli" path="res://scenes/objects/paket_overlay.tscn" id="4_p7vel"]
+[ext_resource type="PackedScene" uid="uid://bkvih16eil0qw" path="res://scenes/objects/screen_overlay.tscn" id="5_j5r8e"]
+[ext_resource type="PackedScene" uid="uid://syxiuh3rotnw" path="res://scenes/objects/bomb_overlay.tscn" id="6_bomb"]
+[ext_resource type="VideoStream" uid="uid://cb3r5sqjwxld2" path="res://assets/video/cut-scene-opening.ogv" id="7_yetur"]
+[ext_resource type="VideoStream" uid="uid://bfjm1oplvjg4d" path="res://assets/video/cut-scene-ending.ogv" id="8_j15j4"]
 
 [sub_resource type="Animation" id="Animation_p4645"]
 resource_name = "LoadIn"
@@ -77,3 +82,42 @@ visible = false
 
 [node name="DialogBox" parent="." unique_id=1922864778 instance=ExtResource("3_r7uh2")]
 visible = false
+
+[node name="PaketOverlay" parent="." unique_id=1148496403 instance=ExtResource("4_p7vel")]
+visible = false
+
+[node name="ScreenOverlay" parent="." unique_id=2117484933 instance=ExtResource("5_j5r8e")]
+visible = false
+
+[node name="BombOverlay" parent="." unique_id=158496403 instance=ExtResource("6_bomb")]
+visible = false
+
+[node name="BombTimer" type="Timer" parent="." unique_id=384729130]
+wait_time = 300.0
+one_shot = true
+
+[node name="Opening_cutscene" type="VideoStreamPlayer" parent="." unique_id=710487396]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -324.0
+offset_top = -169.0
+offset_right = 316.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("7_yetur")
+
+[node name="Ending_cutscene" type="VideoStreamPlayer" parent="." unique_id=364196509]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -324.0
+offset_top = -169.0
+offset_right = 316.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("8_j15j4")
