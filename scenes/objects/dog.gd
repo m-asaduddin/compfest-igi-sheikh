@@ -44,6 +44,7 @@ func _start_chasing(npc: NPC) -> void:
 	_is_chasing = true
 	_target_npc = npc
 	_chase_direction = sign(npc.global_position.x - global_position.x)
-	anim.play("run")
+	anim.play_backwards("run")
+	sprite.flip_h = true
 	# Tell the NPC to flee
 	npc.flee_from_dog()

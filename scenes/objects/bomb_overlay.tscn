@@ -40,9 +40,6 @@ position = Vector2(570.25, 316)
 scale = Vector2(1.9690118, 1.6237622)
 texture = ExtResource("2_1joto")
 
-[node name="TextureButton" parent="." index="2" unique_id=1558960412]
-visible = false
-
 [node name="BackgroundBom" type="Sprite2D" parent="." index="3" unique_id=1949671273]
 position = Vector2(597.00006, 315)
 scale = Vector2(1.6327678, 1.6327683)

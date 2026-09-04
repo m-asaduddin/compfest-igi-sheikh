@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://s5a6y8370bli" path="res://scenes/objects/paket_overlay.tscn" id="4_p7vel"]
 [ext_resource type="PackedScene" uid="uid://bkvih16eil0qw" path="res://scenes/objects/screen_overlay.tscn" id="5_j5r8e"]
 [ext_resource type="PackedScene" uid="uid://syxiuh3rotnw" path="res://scenes/objects/bomb_overlay.tscn" id="6_bomb"]
-[ext_resource type="VideoStream" uid="uid://cb3r5sqjwxld2" path="res://assets/video/cut-scene-opening.ogv" id="7_yetur"]
-[ext_resource type="VideoStream" uid="uid://bfjm1oplvjg4d" path="res://assets/video/cut-scene-ending.ogv" id="8_j15j4"]
+[ext_resource type="VideoStream" uid="uid://d4btweq8ucrqv" path="res://assets/video/Cut-Scene-Opening (1).ogv" id="7_j15j4"]
+[ext_resource type="VideoStream" uid="uid://b1a4i1m5cp5wj" path="res://assets/video/cut-ending (1).ogv" id="8_ckhvw"]
 
 [sub_resource type="Animation" id="Animation_p4645"]
 resource_name = "LoadIn"
@@ -107,7 +107,7 @@ offset_right = 316.0
 offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("7_yetur")
+stream = ExtResource("7_j15j4")
 
 [node name="Ending_cutscene" type="VideoStreamPlayer" parent="." unique_id=364196509]
 visible = false
@@ -120,4 +120,4 @@ offset_right = 316.0
 offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("8_j15j4")
+stream = ExtResource("8_ckhvw")
