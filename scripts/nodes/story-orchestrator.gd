@@ -1,9 +1,19 @@
 extends Node
 
 var player_affected_world_state = {
-	"paket_swapped" = false,
-	"street_blockaded" = false,
-	"dog_unleashed" = false
+	"paket_swapped": false,
+	"street_blockaded": false,
+	"dog_unleashed": false,
+	"paket_dropped": false,
+	"paket_dropped_x": 0.0,
+	"paket_dropped_y": 0.0,
+	"chase_active": false,
+	"chase_timer": 0.0,
+	"npc_start_flee_x": 0.0,
+	"dog_start_chase_x": 0.0,
+	"npc_chase_x": 0.0,
+	"dog_chase_x": 0.0,
+	"npc_fled": false
 }
 
 var npc_route_actions = {
@@ -99,8 +109,30 @@ func _ready() -> void:
 		start_npc_travel()
 
 func _process(delta: float) -> void:
+	# Handle background chase calculation if dog chase is active
+	if player_affected_world_state.get("chase_active", false):
+		var chase_timer: float = player_affected_world_state.get("chase_timer", 0.0) + delta
+		player_affected_world_state["chase_timer"] = chase_timer
+		
+		var npc_start_x: float = player_affected_world_state.get("npc_start_flee_x", 0.0)
+		var dog_start_x: float = player_affected_world_state.get("dog_start_chase_x", 0.0)
+		
+		# NPC runs left at 200 px/s
+		var current_npc_x: float = npc_start_x - (200.0 * chase_timer)
+		# Dog starts running left 2 seconds after detection at 280 px/s
+		var dog_chase_time: float = max(0.0, chase_timer - 2.0)
+		var current_dog_x: float = dog_start_x - (280.0 * dog_chase_time)
+		
+		player_affected_world_state["npc_chase_x"] = current_npc_x
+		player_affected_world_state["dog_chase_x"] = current_dog_x
+		
+		# If both NPC and Dog run far off left edge of scene (< -100 px), mark chase complete and npc_fled
+		if current_npc_x <= -100.0 and current_dog_x <= -100.0:
+			player_affected_world_state["chase_active"] = false
+			player_affected_world_state["npc_fled"] = true
+
 	# Simulasi latar belakang terus berjalan meski Player di scene manapun
-	if npc_is_travelling:
+	if npc_is_travelling and not player_affected_world_state.get("chase_active", false) and not player_affected_world_state.get("npc_fled", false):
 		# Check if the NPC is physically active in the current scene
 		var npc_in_scene = get_tree().get_first_node_in_group("NPC")
 		var npc_is_active = npc_in_scene and npc_in_scene.visible

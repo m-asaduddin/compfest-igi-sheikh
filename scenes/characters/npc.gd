@@ -59,7 +59,17 @@ var _reach_anim_reverse: bool = false
 
 func _ready() -> void:
 	add_to_group("NPC")
-	_update_presence_and_movement()
+	if StoryOrchestrator.player_affected_world_state.get("npc_fled", false):
+		visible = false
+		set_physics_process(false)
+		return
+	elif StoryOrchestrator.player_affected_world_state.get("chase_active", false):
+		is_fleeing_from_dog = true
+		visible = true
+		set_physics_process(true)
+		global_position.x = StoryOrchestrator.player_affected_world_state.get("npc_chase_x", global_position.x)
+	else:
+		_update_presence_and_movement()
 
 func _process(_delta: float) -> void:
 	# If fleeing from dog, skip normal story presence/movement update
@@ -118,6 +128,11 @@ func _process(_delta: float) -> void:
 			sprite.flip_h = false
 
 func _update_presence_and_movement() -> void:
+	if StoryOrchestrator.player_affected_world_state.get("npc_fled", false):
+		visible = false
+		set_physics_process(false)
+		return
+
 	var current_action = StoryOrchestrator.get_current_action()
 	var current_scene_file = get_tree().current_scene.scene_file_path
 	
@@ -213,6 +228,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 		face_direction = "left"
 		move_and_slide()
+		StoryOrchestrator.player_affected_world_state["npc_chase_x"] = global_position.x
+		if global_position.x <= -100.0:
+			visible = false
+			set_physics_process(false)
 		return
 
 	if _is_playing_reach_anim:
@@ -270,9 +289,21 @@ func flee_from_dog() -> void:
 	is_moving = false
 	_is_playing_reach_anim = false
 	
+	# Mark chase active and save initial flee position in StoryOrchestrator
+	StoryOrchestrator.player_affected_world_state["chase_active"] = true
+	StoryOrchestrator.player_affected_world_state["chase_timer"] = 0.0
+	StoryOrchestrator.player_affected_world_state["npc_start_flee_x"] = global_position.x
+	StoryOrchestrator.player_affected_world_state["npc_chase_x"] = global_position.x
+	StoryOrchestrator.npc_is_travelling = false
+	
 	# Drop the paket at NPC current position before fleeing
-	if not _paket_dropped:
+	if not StoryOrchestrator.player_affected_world_state.get("paket_dropped", false):
+		StoryOrchestrator.player_affected_world_state["paket_dropped"] = true
+		StoryOrchestrator.player_affected_world_state["paket_dropped_x"] = global_position.x
+		StoryOrchestrator.player_affected_world_state["paket_dropped_y"] = global_position.y
 		_paket_dropped = true
+		
 		var paket_instance = DROPPED_PAKET_SCENE.instantiate()
 		get_parent().add_child(paket_instance)
 		paket_instance.global_position = global_position
+

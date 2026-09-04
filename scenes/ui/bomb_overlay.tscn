@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://syxiuh3rotnw"]
 
-[ext_resource type="PackedScene" uid="uid://lw233ttumloa" path="res://scenes/objects/overlay.tscn" id="1_2gt7n"]
+[ext_resource type="PackedScene" uid="uid://lw233ttumloa" path="res://scenes/ui/overlay.tscn" id="1_2gt7n"]
 [ext_resource type="Texture2D" uid="uid://nuggu1dliea3" path="res://assets/sprites/interactables/bomb/background-bom-box.png" id="2_1joto"]
 [ext_resource type="Texture2D" uid="uid://yb3xgfb5aewf" path="res://assets/sprites/interactables/bomb/background-bom.png" id="3_wdvkw"]
 [ext_resource type="Texture2D" uid="uid://di37toexjfsce" path="res://assets/sprites/interactables/bomb/button-clicked.png" id="4_wdvkw"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cekwl54lri6w7" path="res://assets/sprites/interactables/bomb/lamp-green.png" id="13_1uikh"]
 [ext_resource type="Texture2D" uid="uid://fq8cmvqch861" path="res://assets/sprites/interactables/bomb/lamp-red.png" id="14_7hj2h"]
 [ext_resource type="Texture2D" uid="uid://bsxn7mab1c3cj" path="res://assets/sprites/interactables/bomb/lamp-off.png" id="15_14xwo"]
-[ext_resource type="Script" uid="uid://cqtx24hfjrn37" path="res://scenes/objects/bomb_overlay.gd" id="16_2gt7n"]
+[ext_resource type="Script" uid="uid://cqtx24hfjrn37" path="res://scenes/ui/bomb_overlay.gd" id="16_2gt7n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5811a"]
 font_size = 32
@@ -39,9 +39,6 @@ visible = false
 position = Vector2(570.25, 316)
 scale = Vector2(1.9690118, 1.6237622)
 texture = ExtResource("2_1joto")
-
-[node name="TextureButton" parent="." index="2" unique_id=1558960412]
-visible = false
 
 [node name="BackgroundBom" type="Sprite2D" parent="." index="3" unique_id=1949671273]
 position = Vector2(597.00006, 315)

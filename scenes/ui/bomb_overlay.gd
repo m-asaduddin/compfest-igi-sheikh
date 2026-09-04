@@ -108,6 +108,7 @@ func _input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
 		return
 	if not GameState._has_item("tang"):
+		SceneManager.show_dialog("Perlu alat untuk memotong kabel ini...")
 		return  # player must have tang to cut cables
 
 	# Detect which connected cable was clicked
@@ -180,12 +181,22 @@ func _on_cable_clicked(color: String) -> void:
 		# Wrong cable — bomb explodes
 		_on_bomb_explode()
 
+func _process(_delta: float) -> void:
+	if GameState.is_bomb_timer_running() and self.visible:
+		var secs_left: int = int(ceil(GameState.get_bomb_time_left()))
+		var mins: int = secs_left / 60
+		var secs: int = secs_left % 60
+		set_timer_label("%02d:%02d" % [mins, secs])
+
 func _on_bomb_diffused_success() -> void:
 	GameState.bomb_diffused = true
 	GameState.diffuse_success = true
-	SceneManager.stop_bomb_timer()
+	GameState.stop_bomb_timer()
 	get_tree().paused = false
 	self.visible = false
+	SceneManager.show_dialog("Bom berhasil dijinakkan")
+	await get_tree().create_timer(3.00).timeout
+	SceneManager.transition_to_scene("res://scenes/ui/cutscene_ending.tscn")
 
 func _on_bomb_explode() -> void:
 	GameState.bomb_diffused = true
@@ -193,3 +204,5 @@ func _on_bomb_explode() -> void:
 	get_tree().paused = false
 	self.visible = false
 	GameState.game_over()
+	SceneManager.show_dialog("Bom Meledak. Urutan Kabel yang dipotong salah")
+	SceneManager.transition_to_scene("res://scenes/levels/main_street.tscn")

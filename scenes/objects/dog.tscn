@@ -112,7 +112,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlxaj"]
-size = Vector2(2000, 300)
+size = Vector2(1128, 300)
 
 [node name="dog" unique_id=1213165164 instance=ExtResource("1_jkxci")]
 script = ExtResource("1_tfmc1")
@@ -130,7 +130,7 @@ collision_layer = 0
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0" unique_id=1564762780]
-position = Vector2(-34, -80)
+position = Vector2(-470, -80)
 shape = SubResource("RectangleShape2D_wlxaj")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

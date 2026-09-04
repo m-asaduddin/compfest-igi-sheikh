@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bkvih16eil0qw"]
 
-[ext_resource type="PackedScene" uid="uid://lw233ttumloa" path="res://scenes/objects/overlay.tscn" id="1_u8nb8"]
+[ext_resource type="PackedScene" uid="uid://lw233ttumloa" path="res://scenes/ui/overlay.tscn" id="1_u8nb8"]
 [ext_resource type="Texture2D" uid="uid://bb0ypqo22qesn" path="res://assets/sprites/interactables/computer-monitor.png" id="2_2fmv2"]
-[ext_resource type="Script" uid="uid://dx3t4x4a4ojrv" path="res://scenes/objects/screen_overlay.gd" id="2_vq3w0"]
+[ext_resource type="Script" uid="uid://dx3t4x4a4ojrv" path="res://scenes/ui/screen_overlay.gd" id="2_vq3w0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5811a"]
 font_size = 40
