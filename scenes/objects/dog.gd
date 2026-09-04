@@ -36,6 +36,8 @@ func apply_result(result: Dictionary) -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body is NPC and not _is_chasing:
 		var npc := body as NPC
+		npc.flee_from_dog()
+		await get_tree().create_timer(2.0).timeout
 		# Only chase if the dog is unleashed
 		if StoryOrchestrator.player_affected_world_state.get("dog_unleashed", false):
 			_start_chasing(npc)
@@ -43,8 +45,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _start_chasing(npc: NPC) -> void:
 	_is_chasing = true
 	_target_npc = npc
+	anim.flip_h = true
 	_chase_direction = sign(npc.global_position.x - global_position.x)
-	anim.play_backwards("run")
-	sprite.flip_h = true
+	anim.play("run")
 	# Tell the NPC to flee
-	npc.flee_from_dog()

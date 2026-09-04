@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cdu71lt6twq8e"]
+
+[ext_resource type="VideoStream" uid="uid://d4btweq8ucrqv" path="res://assets/video/Cut-Scene-Opening (1).ogv" id="1_yka0o"]
+[ext_resource type="Script" uid="uid://df3gn0n1xehtb" path="res://scenes/ui/cutscene_opening.gd" id="2_lywgo"]
+
+[node name="CutsceneOpening" type="VideoStreamPlayer" unique_id=1151042280]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_yka0o")
+script = ExtResource("2_lywgo")

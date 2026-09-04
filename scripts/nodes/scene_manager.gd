@@ -5,37 +5,24 @@ extends CanvasLayer
 @onready var _inventory: Control = $Inventory
 @onready var _inventoryItemList: ItemList = $Inventory/ItemList
 @onready var _dialogBox = $DialogBox
-@onready var _bomb_timer: Timer = $BombTimer
-@onready var _bomb_overlay = $BombOverlay
 
 const DIALOG_BOX_SCENE = preload("res://scenes/ui/dialog_box.tscn")
+const PAKET_OVERLAY_SCENE = preload("res://scenes/ui/paket_overlay.tscn")
+const SCREEN_OVERLAY_SCENE = preload("res://scenes/ui/screen_overlay.tscn")
+const BOMB_OVERLAY_SCENE = preload("res://scenes/ui/bomb_overlay.tscn")
+
+var _paket_overlay_instance: Control = null
+var _screen_overlay_instance: Control = null
+var _bomb_overlay_instance: Control = null
 
 # ─────────────────────────────────────────────
-#  BOMB COUNTDOWN TIMER
+#  BOMB COUNTDOWN TIMER (Delegated to GameState)
 # ─────────────────────────────────────────────
-func _ready() -> void:
-	_bomb_timer.timeout.connect(_on_bomb_timer_timeout)
-
-func _process(_delta: float) -> void:
-	# Keep TimerLabel updated every frame while the timer is running
-	if not _bomb_timer.is_stopped() and _bomb_overlay.visible:
-		var secs_left: int = int(ceil(_bomb_timer.time_left))
-		var mins: int = secs_left / 60
-		var secs: int = secs_left % 60
-		_bomb_overlay.set_timer_label("%02d:%02d" % [mins, secs])
-
-func start_bomb_timer() -> void:
-	_bomb_timer.start(300.0)
+func start_bomb_timer(duration: float = 300.0) -> void:
+	GameState.start_bomb_timer(duration)
 
 func stop_bomb_timer() -> void:
-	_bomb_timer.stop()
-
-func _on_bomb_timer_timeout() -> void:
-	# Time ran out — bomb explodes
-	GameState.bomb_diffused = true
-	GameState.diffuse_success = false
-	_bomb_overlay.visible = false
-	GameState.game_over()
+	GameState.stop_bomb_timer()
 
 func transition_to_scene(target_scene_path: String, is_loading_save: bool = false) -> void:
 	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -96,27 +83,21 @@ func _on_dialog_dismissed() -> void:
 	
 	
 func show_box_overlay() -> void:
-	$PaketOverlay.visible = true
-
-func show_opening() -> void :
-	print("cutscene displayed")
-	var opening_video = $Opening_cutscene
-	opening_video.show()
-	opening_video.play()
-	await opening_video.finished
-	opening_video.hide()
-
-func show_ending() -> void :
-	var ending_cutscene = $Ending_cutscene
-	ending_cutscene.show()
-	ending_cutscene.play()
-	await ending_cutscene.finished
-	ending_cutscene.hide()
+	if _paket_overlay_instance == null or not is_instance_valid(_paket_overlay_instance):
+		_paket_overlay_instance = PAKET_OVERLAY_SCENE.instantiate()
+		add_child(_paket_overlay_instance)
+	_paket_overlay_instance.visible = true
 
 func show_computer_overlay() -> void:
-	$ScreenOverlay.visible = true
+	if _screen_overlay_instance == null or not is_instance_valid(_screen_overlay_instance):
+		_screen_overlay_instance = SCREEN_OVERLAY_SCENE.instantiate()
+		add_child(_screen_overlay_instance)
+	_screen_overlay_instance.visible = true
 
 func show_bomb_overlay() -> void:
-	$BombOverlay.visible = true
-	start_bomb_timer()
+	if _bomb_overlay_instance == null or not is_instance_valid(_bomb_overlay_instance):
+		_bomb_overlay_instance = BOMB_OVERLAY_SCENE.instantiate()
+		add_child(_bomb_overlay_instance)
+	_bomb_overlay_instance.visible = true
+
 	

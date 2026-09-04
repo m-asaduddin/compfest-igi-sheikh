@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lw233ttumloa"]
 
-[ext_resource type="Script" uid="uid://srlukurfg2cw" path="res://scenes/objects/overlay.gd" id="1_5rgtv"]
+[ext_resource type="Script" uid="uid://srlukurfg2cw" path="res://scenes/ui/overlay.gd" id="1_5rgtv"]
 [ext_resource type="Texture2D" uid="uid://dfklwc6b0oxl1" path="res://assets/sprites/interactables/close button.png" id="5_qorr8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svbij"]

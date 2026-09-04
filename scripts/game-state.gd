@@ -10,12 +10,43 @@ var is_inventory_open: bool = false
 var bomb_diffused: bool = false
 var diffuse_success: bool = false
 
+var bomb_timer: Timer = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	bomb_timer = Timer.new()
+	bomb_timer.name = "BombTimer"
+	bomb_timer.one_shot = true
+	bomb_timer.timeout.connect(_on_bomb_timer_timeout)
+	add_child(bomb_timer)
 
 func _process(delta: float) -> void:
 	pass
+
+func start_bomb_timer(duration: float = 300.0) -> void:
+	if bomb_timer:
+		bomb_timer.start(duration)
+
+func stop_bomb_timer() -> void:
+	if bomb_timer:
+		bomb_timer.stop()
+
+func get_bomb_time_left() -> float:
+	if bomb_timer and not bomb_timer.is_stopped():
+		return bomb_timer.time_left
+	return 0.0
+
+func is_bomb_timer_running() -> bool:
+	return bomb_timer != null and not bomb_timer.is_stopped()
+
+func _on_bomb_timer_timeout() -> void:
+	bomb_diffused = true
+	diffuse_success = false
+	game_over()
+	SceneManager.show_dialog("Waktu Habis. Bom meledak sebelum dijinakan")
+	await get_tree().create_timer(5.00).timeout
+	SceneManager.transition_to_scene("res://scenes/levels/main_street.tscn")
+
 
 ## Load an ItemData resource from the items directory by its id.
 func _load_item_resource(id: String) -> ItemData:
